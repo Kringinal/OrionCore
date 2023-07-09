@@ -79,8 +79,6 @@ app.listen(process.env.PORT || 5000, () => {
   console.log('listening');
 });
 
-discordClient.login(process.env.DISTOKEN)
-
 function rblx_login() {
     rblxFunctions.setCookie(process.env.COOKIE).then(function() {
       loggedIn = true
@@ -106,5 +104,8 @@ cron.schedule('* * 1 * *', () => {
 cron.schedule('*/25 * * * *', () => {
   axios.get('https://orioncore-7d170ec55711.herokuapp.com/api/');
 })
+
+discordClient.login(process.env.DISTOKEN)
+rblx_login()
 
 module.exports = app;
