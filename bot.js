@@ -4,6 +4,7 @@ const express = require('express');
 const config = require('./config.json')
 const firebase = require('firebase-admin')
 const cron = require('node-cron');
+const app = express();
 const serviceAccount = require('./orion-core-61636-firebase-adminsdk-4c2ck-a996d6a61a.json')
 const firebaseConfig = {
     credential: firebase.credential.cert(serviceAccount),
