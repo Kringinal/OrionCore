@@ -75,7 +75,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', index);
 app.use('/api', api);
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('listening');
 });
 
