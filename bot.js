@@ -11,7 +11,7 @@ const firebaseConfig = {
     credential: firebase.credential.cert(serviceAccount),
     databaseURL: `${config.firebaseURL}`,
 };
-const loggedIn = false
+var loggedIn = false
 firebase.initializeApp(firebaseConfig)
 
 
