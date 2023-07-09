@@ -97,3 +97,5 @@ cron.schedule('* * 1 * *', () => {
       })
     }
   });
+
+module.exports = app;
