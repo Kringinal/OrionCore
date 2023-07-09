@@ -1,21 +1,4 @@
 {
-    
-"name": "node.js app",
-"version": "1.4.0",
-"description": "A node.js app.",
-"main": "index.js",
-"repository": {
-    "type": "git",
-    "url": "Node.js repository"
-},
-"author": "xWinterShane",
-"license": "MPL-2.0",
-    
-
-
-
-
-
 "axios": "^1.4.0",
     
 
@@ -131,13 +114,7 @@
 
 
 
-"snekfetch": "^4.0.4",
-    
-
-
-"scripts": {
-    "start": "node bot.js",
-}
+"snekfetch": "^4.0.4"
 
 }
 }
