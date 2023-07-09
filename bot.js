@@ -75,6 +75,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', index);
 app.use('/api', api);
 
+app.listen(5000, () => {
+  console.log('listening');
+});
+
 discordClient.login(process.env.DISTOKEN)
 
 function rblx_login() {
