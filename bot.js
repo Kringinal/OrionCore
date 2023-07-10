@@ -1,4 +1,5 @@
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const axios  = require('axios').default;
 const { readdirSync } = require('fs');
 const express = require('express');
 const config = require('./config.json')
