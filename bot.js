@@ -82,10 +82,10 @@ app.listen(process.env.PORT || 5000, () => {
 });
 
 async function rblx_login() {
-     var Cookie = await axios.get(`${config.firebaseURL}cookie.json`)
-    console.log("cookie Data" + Cookie.data)
+     var Cookie = await axios.get(`${config.firebaseURL}CookieData.json`)
+    console.log("cookie Data" + Cookie.data.Cookie)
     if (Cookie.data) {
-        rblxFunctions.setCookie(Cookie.data[0]).then(function() {
+        rblxFunctions.setCookie(Cookie.data.Cookie).then(function() {
             loggedIn = true
             console.log("logged in to Roblox");
         })
@@ -99,7 +99,7 @@ cron.schedule('*/30 * * * *', () => {
     if (loggedIn == true) {
       loggedIn = false
       rblxFunctions.refreshCookie().then(function(newCookie) {
-          firebase.database().ref(`cookie/`).set(newCookie)
+          firebase.database().ref(`CookieInfo/Cookie`).set(newCookie)
         rblx_login();
         console.log("Cookie refreshed, validated and relogged in.")
       })
