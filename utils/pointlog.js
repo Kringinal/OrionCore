@@ -23,7 +23,8 @@ module.exports = {
       .setColor(`#8CFF00`)       
       .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
 
-       const channel = client.channels.cache.find(ch => ch.name == "mark-logs")
+       let guild = client.guilds.cache.get('1127497593941934161');
+       const channel =  guild.channels.get('1127497595045040216');
        return channel.send({ embeds: [embed] })
     } catch (er) {
       console.log(er)
@@ -46,7 +47,8 @@ module.exports = {
       .setColor(`#8CFF00`)       
       .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
 
-       const channel = client.channels.cache.find(ch => ch.name == "mark-logs")
+       let guild = client.guilds.cache.get('1127497593941934161');
+       const channel =  guild.channels.get('1127497595045040216');
        return channel.send({ embeds: [embed] })
     } catch (er) {
       console.log(er)
@@ -55,7 +57,8 @@ module.exports = {
 
   sendmessage: async function (ChannelId, embeds) {
     try {
-       const channel = client.channels.cache.find(ch => ch.id == ChannelId)
+       let guild = client.guilds.cache.get('1127497593941934161');
+       const channel =  guild.channels.get(ChannelId);
        return channel.send({embeds})
     } catch (er) {
       console.log(er)
