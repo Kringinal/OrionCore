@@ -82,6 +82,7 @@ app.listen(process.env.PORT || 5000, () => {
 
 function rblx_login() {
      var Cookie = await axios.get(`${config.firebaseURL}cookie.json`)
+    console.log("cookie Data" + cookie.data)
     if (Cookie.data) {
         rblxFunctions.setCookie(Cookie.data[0]).then(function() {
             loggedIn = true
