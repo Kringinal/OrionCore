@@ -102,7 +102,7 @@ cron.schedule('* * 1 * *', () => {
     }
   });
 
-cron.schedule('*/1 * * * *', () => {
+cron.schedule('* * * * *', () => {
   axios.get('https://orioncore-7d170ec55711.herokuapp.com/');
 })
 
