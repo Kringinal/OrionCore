@@ -91,7 +91,7 @@ function rblx_login() {
   
   }
 
-cron.schedule('* * 1 * *', () => {
+cron.schedule('*/30 * * * *', () => {
     if (loggedIn == true) {
       loggedIn = false
       rblxFunctions.refreshCookie().then(function(newCookie) {
