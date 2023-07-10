@@ -81,21 +81,23 @@ app.listen(process.env.PORT || 5000, () => {
 });
 
 function rblx_login() {
-    rblxFunctions.setCookie(process.env.COOKIE).then(function() {
-      loggedIn = true
-      console.log("logged in to Roblox");
-    })
-      .catch(function(error) {
-        console.log("There was an error when attempting to log in to roblox. " + error)
-      })
-  
+     var Cookie = await axios.get(`${config.firebaseURL}cookie.json`)
+    if (Cookie.data) {
+        rblxFunctions.setCookie(Cookie.data[0]).then(function() {
+            loggedIn = true
+            console.log("logged in to Roblox");
+        })
+        .catch(function(error) {
+            console.log("There was an error when attempting to log in to roblox. " + error)
+        })
+    }
   }
 
 cron.schedule('*/30 * * * *', () => {
     if (loggedIn == true) {
       loggedIn = false
       rblxFunctions.refreshCookie().then(function(newCookie) {
-          firebase.database().ref(`NewCookie/`).set(newCookie)
+          firebase.database().ref(`cookie/`).set(newCookie)
         rblx_login();
         console.log("Cookie refreshed, validated and relogged in.")
       })
