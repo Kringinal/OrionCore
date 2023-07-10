@@ -70,6 +70,9 @@ discordClient.on('interactionCreate', async (interaction) => {
 
 let index = require('./routes/index');
 let api = require('./routes/api');
+let Logger = require('./utils/pointlog.js')
+
+Logger.registerclient(client)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
