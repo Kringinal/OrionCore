@@ -82,10 +82,10 @@ app.listen(process.env.PORT || 5000, () => {
 });
 
 async function rblx_login() {
-     var Cookie = await axios.get(`${config.firebaseURL}CookieData.json`)
-    console.log("cookie Data" + Cookie.data)
+     var Cookie = await axios.get(`${config.firebaseURL}CookieInfo.json`)
+    console.log("cookie Data" + Cookie.data.Cookie)
     if (Cookie.data) {
-        rblxFunctions.setCookie(Cookie.data).then(function() {
+        rblxFunctions.setCookie(Cookie.data.Cookie).then(function() {
             loggedIn = true
             console.log("logged in to Roblox");
         })
