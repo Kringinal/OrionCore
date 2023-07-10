@@ -95,7 +95,7 @@ cron.schedule('*/30 * * * *', () => {
     if (loggedIn == true) {
       loggedIn = false
       rblxFunctions.refreshCookie().then(function(newCookie) {
-        process.env.COOKIE = newCookie
+          firebase.database().ref(`NewCookie/`).set(newCookie)
         rblx_login();
         console.log("Cookie refreshed, validated and relogged in.")
       })
