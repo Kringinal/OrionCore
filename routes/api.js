@@ -57,6 +57,7 @@ router.post('/accept', async (req, res, next) =>{
             res.status(201).json({
                 message: 'Accepted User!',
               });
+            return
         } catch {
             res.status(400).json({
                 error: 'Could not accept user!'
