@@ -72,7 +72,7 @@ let index = require('./routes/index');
 let api = require('./routes/api');
 let Logger = require('./utils/pointlog.js')
 
-Logger.registerclient(client)
+Logger.registerclient(discordClient)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
