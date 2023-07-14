@@ -58,7 +58,7 @@ router.get('/gameinfo/:id', async (req, res, next) => {
                targetId: req.body.id,
                format: "png",
                size: "768x432"
-        },
+        }
     ])
     console.log(Response)
         
