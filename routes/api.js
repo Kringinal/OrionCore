@@ -8,6 +8,10 @@ let client;
 
 const gamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
 
+const headerData = {
+      x-api-key: "Re7DxNU51Ui89JvoXKFoNtgHNpksWva6bqbm9/yswXZ4F11y",
+    };
+
 /* GET SPECIFIC USER FROM BLACKLIST */
 module.exports.setclient = function(newclient){
     client = newclient
@@ -48,7 +52,7 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
 router.get('/gameinfo/:id', async (req, res, next) => {
     try {
     
-    const Response = await axios.get(gamesUrl + req.params.id)
+    const Response = await axios.get(gamesUrl + req.params.id, headerData)
     console.log(Response)
         
       res.status(201).json({
