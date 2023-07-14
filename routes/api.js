@@ -43,12 +43,12 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
     }
 }),
 
-let GamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
+const gamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
     
 router.get('/gameinfo/:id', async (req, res, next) => {
     try {
     
-    const Response = await axios.get(GamesUrl + req.params.id)
+    const Response = await axios.get(gamesUrl + req.params.id)
     console.log(Response)
         
       res.status(201).json({
