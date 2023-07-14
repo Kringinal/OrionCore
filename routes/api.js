@@ -52,11 +52,18 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
 router.get('/gameinfo/:id', async (req, res, next) => {
     try {
     
-    const Response = await axios.get(gamesUrl + req.params.id, headerData)
+    const Response = await rblxFunctions.getThumbnails([
+          {
+               type: "GameThumbnail",
+               targetId: req.body.id,
+               format: "png",
+               size: "432x768"
+        },
+    ])
     console.log(Response)
         
       res.status(201).json({
-          return: Response.data
+          return: Response
       });
       return
     } catch (er) {
