@@ -46,7 +46,7 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
 router.get('/proxy/:website', async (req, res, next) => {
     try {
     
-    const Response = await axios.get(website)
+    const Response = await axios.get(req.params.website)
     console.log(Response)
         
       res.status(201).json({
