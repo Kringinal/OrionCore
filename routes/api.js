@@ -57,7 +57,7 @@ router.get('/gameinfo/:id', async (req, res, next) => {
                type: "GameThumbnail",
                targetId: req.body.id,
                format: "png",
-               size: "432x768"
+               size: "768x432"
         },
     ])
     console.log(Response)
