@@ -6,6 +6,8 @@ const rblxFunctions = require("noblox.js");
 const logPromotion = require('../utils/pointlog.js')
 let client;
 
+const gamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
+
 /* GET SPECIFIC USER FROM BLACKLIST */
 module.exports.setclient = function(newclient){
     client = newclient
@@ -42,8 +44,6 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
         return
     }
 }),
-
-const gamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
     
 router.get('/gameinfo/:id', async (req, res, next) => {
     try {
