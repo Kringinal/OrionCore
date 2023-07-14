@@ -43,6 +43,24 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
     }
 }),
 
+router.get('/proxy/:website', async (req, res, next) => {
+    try {
+    
+    const Response = await axios.Get(website)
+        
+      res.status(201).json({
+          oldrank: OldRankName,
+          newrank: NextRank
+      });
+      return
+    } catch (er) {
+        res.status(400).json({
+            error: er
+        });
+        return
+    }
+}),
+
 /* ACCEPTING USER */
 router.post('/accept', async (req, res, next) =>{
     const UserId = req.body.userid
