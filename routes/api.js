@@ -46,11 +46,11 @@ router.get('/getnextrole/:userid', async (req, res, next) => {
 router.get('/proxy/:website', async (req, res, next) => {
     try {
     
-    const Response = await axios.Get(website)
+    const Response = await axios.get(website)
+    console.log(Response)
         
       res.status(201).json({
-          oldrank: OldRankName,
-          newrank: NextRank
+          return: Response.data
       });
       return
     } catch (er) {
