@@ -67,12 +67,15 @@ module.exports = {
             } catch(err) {
                 return interaction.editReply({content: "COULDNT CHANGE NICKNAME", embeds: [page6], components: [] });
             };
+
+            var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${Profile.RobloxId}&size=420x420&format=Png&isCircular=true`)
             
             const REmbed = new EmbedBuilder()
                 .setTitle('VERIFICATION')
                 .setDescription(`Successfully updated your roles!`)
                 .setColor(0x5d65f3)
-                .setThumbnail(config.GroupLogo);
+                .setThumbnail(Avatar.data.data[0].imageUrl);
+                .setTimestamp()
 
             return interaction.editReply({content: "", embeds: [REmbed] });
         } else {
@@ -80,7 +83,8 @@ module.exports = {
                 .setTitle('ERROR')
                 .setDescription(`You're not verified! Use /verify to link your ROBLOX account.`)
                 .setColor(config.ErrorColor)
-                .setThumbnail(config.GroupLogo);
+                .setThumbnail(Avatar.data.data[0].imageUrl);
+                .setTimestamp()
 
             return interaction.editReply({content: "", embeds: [EEmbed]})
         }
