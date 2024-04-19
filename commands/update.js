@@ -27,6 +27,7 @@ module.exports = {
         }
 
         const OrionRole = interaction.guild.roles.cache.find(r => r.name === config.OrionRole);
+        const OfficerRole = interaction.guild.roles.cache.find(r => r.name === config.OfficerRole);
         const GuestRole = interaction.guild.roles.cache.find(r => r.name === config.GuestRole); 
 
         if (Profile && Profile.RobloxId !== 0) {
@@ -44,11 +45,18 @@ module.exports = {
                 try {
                     await interaction.member.roles.add(OrionRole)
                     await interaction.member.roles.remove(GuestRole)
+
+                    if (x.Role.rank >== 249) {
+                        await interaction.member.roles.add(OfficerRole)
+                    } else {
+                        await interaction.member.roles.add(OfficerRole)
+                    }
                 } catch {
                     return interaction.editReply({content: "COULDNT GIVE ROLES", embeds: [page6], components: [] });
                 }
             } else {
                 await interaction.member.roles.remove(OrionRole)
+                await interaction.member.roles.remove(OfficerRole)
                 await interaction.member.roles.add(GuestRole)
             }
 
