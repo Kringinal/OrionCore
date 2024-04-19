@@ -110,7 +110,7 @@ cron.schedule('*/30 * * * *', () => {
   });
 
 cron.schedule('* * * * *', () => {
-  axios.get('https://orioncore-7d170ec55711.herokuapp.com/');
+  axios.get('https://orioncore-3b6068b75ef5.herokuapp.com/');
 })
 
 discordClient.login(process.env.DISTOKEN)
