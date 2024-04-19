@@ -46,10 +46,11 @@ module.exports = {
                     await interaction.member.roles.add(OrionRole)
                     await interaction.member.roles.remove(GuestRole)
 
+                    console.log(x)
                     if (x.Role.rank >= 249) {
                         await interaction.member.roles.add(OfficerRole)
                     } else {
-                        await interaction.member.roles.add(OfficerRole)
+                        await interaction.member.roles.remove(OfficerRole)
                     }
                 } catch {
                     return interaction.editReply({content: "COULDNT GIVE ROLES", embeds: [page6], components: [] });
