@@ -65,37 +65,37 @@ module.exports = {
                     .setTitle('VERIFICATION')
                     .setDescription(`To verify account ownership, join the [verification game](${config.verificationLink}).`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
                 const page2 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Sorry, but it looks like you haven't completed the steps in the [verification game](${config.verificationLink}). Please complete the steps then click "DONE".`)
                     .setColor(config.ErrorColor)
-                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
                 const page3 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
                 const page4 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Account verification cancelled. To try again, run /verify.`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(config.GroupLogo)
                     .setTimestamp()
                 const page5 = new EmbedBuilder()
                     .setTitle('TIMEOUT')
                     .setDescription(`Verification timed out. To try again, run /verify.`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(config.GroupLogo)
                     .setTimestamp()
                 const page6 = new EmbedBuilder()
                     .setTitle('UNAUTHORIZED')
                     .setDescription(`I am not able to update your roles/nickname!`)
                     .setColor(config.ErrorColor)
-                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
                 const row = new ActionRowBuilder()
                 .addComponents(
