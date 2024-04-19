@@ -1,6 +1,6 @@
 {
     "OrionRole": "Orion Core",
-    "GuestRole": "Guest",
+    "GuestRole": "Visitor",
     "firebaseURL": "https://orion-core-61636-default-rtdb.firebaseio.com/",
     "verificationLink": "https://www.roblox.com/games/14003235476/VERIFICATION",
     "GroupLogo": "https://cdn.discordapp.com/attachments/636323540018397184/1127474980016374001/Orion_Core.png",
