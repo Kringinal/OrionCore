@@ -49,6 +49,8 @@ module.exports = {
             }
 
             var PendingResponse = await axios.get(`${config.firebaseURL}Pending/${UserId}.json`)
+            
+            var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${UserId}&size=420x420&format=Png&isCircular=true`)
 
             if (PendingResponse.data && UserId !== 0) {
                 return interaction.reply({ content: 'You can not have more than one verification prompt active at a time!' });
@@ -63,32 +65,38 @@ module.exports = {
                     .setTitle('VERIFICATION')
                     .setDescription(`To verify account ownership, join the [verification game](${config.verificationLink}).`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setTimestamp()
                 const page2 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Sorry, but it looks like you haven't completed the steps in the [verification game](${config.verificationLink}). Please complete the steps then click "DONE".`)
                     .setColor(config.ErrorColor)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setTimestamp()
                 const page3 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
                     .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setTimestamp()
                 const page4 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
                     .setDescription(`Account verification cancelled. To try again, run /verify.`)
                     .setColor(0x5d65f3)
                     .setThumbnail(config.GroupLogo);
+                    .setTimestamp()
                 const page5 = new EmbedBuilder()
                     .setTitle('TIMEOUT')
                     .setDescription(`Verification timed out. To try again, run /verify.`)
                     .setColor(0x5d65f3)
                     .setThumbnail(config.GroupLogo);
+                    .setTimestamp()
                 const page6 = new EmbedBuilder()
                     .setTitle('UNAUTHORIZED')
                     .setDescription(`I am not able to update your roles/nickname!`)
                     .setColor(config.ErrorColor)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(Avatar.data.data[0].imageUrl);
+                    .setTimestamp()
                 const row = new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
