@@ -39,7 +39,7 @@ module.exports = {
                     .setTitle('UNAUTHORIZED')
                     .setDescription(`I am not able to update your roles/nickname!`)
                     .setColor(config.ErrorColor)
-                    .setThumbnail(config.GroupLogo);
+                    .setThumbnail(config.GroupLogo)
 
             if (response.data.data.find(x => x.group.id === 14765837)){
                 try {
@@ -74,7 +74,7 @@ module.exports = {
                 .setTitle('VERIFICATION')
                 .setDescription(`Successfully updated your roles!`)
                 .setColor(0x5d65f3)
-                .setThumbnail(Avatar.data.data[0].imageUrl);
+                .setThumbnail(Avatar.data.data[0].imageUrl)
                 .setTimestamp()
 
             return interaction.editReply({content: "", embeds: [REmbed] });
@@ -83,7 +83,7 @@ module.exports = {
                 .setTitle('ERROR')
                 .setDescription(`You're not verified! Use /verify to link your ROBLOX account.`)
                 .setColor(config.ErrorColor)
-                .setThumbnail(Avatar.data.data[0].imageUrl);
+                .setThumbnail(Avatar.data.data[0].imageUrl)
                 .setTimestamp()
 
             return interaction.editReply({content: "", embeds: [EEmbed]})
