@@ -21,6 +21,7 @@ module.exports = {
         const username = options.getString('username');
 
         const OrionRole = interaction.guild.roles.cache.find(role => role.id === config.OrionRole);
+        const OfficerRole = interaction.guild.roles.cache.find(role => role.id === config.OfficerRole);
         const GuestRole = interaction.guild.roles.cache.find(role => role.id === config.GuestRole);
 
         var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
@@ -121,11 +122,18 @@ module.exports = {
                                     try {
                                         await interaction.member.roles.add(OrionRole)
                                         await interaction.member.roles.remove(GuestRole)
+
+                                        if (x.Role.rank >== 249) {
+                                            await interaction.member.roles.add(OfficerRole)
+                                        } else {
+                                            await interaction.member.roles.add(OfficerRole)
+                                        }
                                     } catch {
                                         return interaction.editReply({ embeds: [page6], components: [] });
                                     }
                                 } else {
                                     await interaction.member.roles.remove(OrionRole)
+                                    await interaction.member.roles.remove(OfficerRole)
                                     await interaction.member.roles.add(GuestRole)
                                 }
 
