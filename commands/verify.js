@@ -123,7 +123,7 @@ module.exports = {
                                         await interaction.member.roles.add(OrionRole)
                                         await interaction.member.roles.remove(GuestRole)
 
-                                        if (x.Role.rank >= 249) {
+                                        if (response.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
                                             await interaction.member.roles.add(OfficerRole)
                                         } else {
                                             await interaction.member.roles.add(OfficerRole)
