@@ -110,10 +110,10 @@ module.exports = {
                     var Robloxid = CurrentEditingProfile.RobloxId
             
                 logs[logs.Length] = {
-                    DateTime = timestamp,
-                    HostId = HostUserID,
-                    Marks = amount,
-                    Type = "Discord Integration"
+                    DateTime: timestamp,
+                    HostId: HostUserID,
+                    Marks: amount,
+                    Type: "Discord Integration"
                 }
 
                 db.ref(`Profile/${UserId}_Info/`).set({
