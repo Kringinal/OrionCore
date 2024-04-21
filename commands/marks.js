@@ -9,13 +9,6 @@ let db = admin.database();
 
 const logPromotion = require('../utils/pointlog.js');
 
-const LogExample = {
-    DateTime = 3,
-    HostId = 4791296289,
-    Marks = 0,
-    Type = "Discord Integration"
-}
-
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('marks')
