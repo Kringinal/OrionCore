@@ -92,7 +92,7 @@ module.exports = {
                 } else {
                      const EEmbed = new EmbedBuilder()
                         .setTitle('COULD NOT EDIT PROFILE')
-                        .setDescription(`The provided username ${currentuser}, does not exit on ROBLOX.`)
+                        .setDescription(`The provided username ${currentuser}, does not exist on ROBLOX.`)
                         .setColor(config.ErrorColor)
                         .setThumbnail(config.GroupLogo)
                         .setTimestamp()
@@ -110,7 +110,6 @@ module.exports = {
                     var logs = CurrentEditingProfile.Logs
                     var Lastupdated = CurrentEditingProfile.LastUpdated
                     var Discordid = CurrentEditingProfile.DiscordId
-                    var Robloxid = CurrentEditingProfile.RobloxId
             
                 logs[logs.length] = {
                     DateTime: timestamp,
@@ -123,12 +122,15 @@ module.exports = {
                     Marks: marks + amount,
                     Logs: logs,
                     LastUpdated: Lastupdated,
-                    RobloxId: Robloxid,
+                    RobloxId: UserId,
                     DiscordId:  Discordid
                 }).then(async function(response) {
+		    var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${UserId}&size=420x420&format=Png&isCircular=true`)
                     const REmbed = new EmbedBuilder()
-                        .setTitle(`Successfully updated ${currentuser}'s profile!`)
+                        .setTitle(`[${currentuser}](https://www.roblox.com/users/${UserId}/profile)`)
+			.setDescription(`${marks} -> ` + (marks + amount) + `\n \n `+ (Requirements.data[CurrRank+1] || 0 + `more Marks for ` + noblox.getRole(14765837, CurrRank+1)))
                         .setColor(0x5d65f3)
+			.setThumbnail(Avatar.data.data[0].imageUrl)
                         .setTimestamp()
 
 			interaction.channel.send({content: "", embeds: [REmbed]})
