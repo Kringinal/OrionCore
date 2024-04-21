@@ -5,7 +5,7 @@ const { ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, EmbedBuilder } = r
 const axios  = require('axios').default;
 const rblxFunctions = require("noblox.js");
 const firebase = require('firebase-admin');
-let db = admin.database();
+let db = firebase.database();
 
 const logPromotion = require('../utils/pointlog.js');
 
