@@ -128,7 +128,7 @@ module.exports = {
                         .setColor(0x5d65f3)
                         .setTimestamp()
         
-                    interaction.Reply({content: "", embeds: [REmbed] });
+                    interaction.reply({content: "", embeds: [REmbed] });
 
                     const CurrRank = rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = axios.get(`${config.firebaseURL}Requirements.json`)
