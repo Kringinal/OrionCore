@@ -140,7 +140,7 @@ module.exports = {
                         if (marks + amount >= NextRankRequirement) {
                             // PROMOTION!!!
 
-			     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + UserId
+			     var UserNameResponse = axios.post(`https://users.roblox.com/v1/users/` + UserId
 								     
 			     axios({
 				  method: 'post',
