@@ -51,7 +51,7 @@ module.exports = {
 
          for (var pfl in Profiles.data) {
             if (Profiles.data[pfl].DiscordId == HostUserID){
-                HostUserID = Profiles.data[pfl].replace("_Info", "")
+                HostUserID = Profiles.data[pfl].toString().replace("_Info", "")
             }
         }
         
@@ -63,7 +63,7 @@ module.exports = {
 
                 for (var pfl in Profiles.data) {
                     if (Profiles.data[pfl].DiscordId == RevisedDiscordID){
-                        UserId = Profiles.data[pfl].replace("_Info", "")
+                        UserId = Profiles.data[pfl].toString().replace("_Info", "")
                     }
                 }
 
