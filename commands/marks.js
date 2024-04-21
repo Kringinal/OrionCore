@@ -50,7 +50,8 @@ module.exports = {
         const usernames = options.getString('usernames')
 
         const usernamebreakdown = usernames.split(" ")
-
+	console.log(usernamebreakdown.length)
+	    
         var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
 
          for (var pfl in Profiles.data) {
