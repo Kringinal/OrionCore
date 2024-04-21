@@ -130,7 +130,7 @@ module.exports = {
         
                     interaction.reply({content: "", embeds: [REmbed] });
 
-                    const CurrRank = rblxFunctions.getRankInGroup(14765837, UserId)
+                    const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = axios.get(`${config.firebaseURL}Requirements.json`)
 
                     const NextRankRequirement = Requirements.data[CurrRank+1] ?? null
@@ -139,7 +139,7 @@ module.exports = {
                         if (marks + amount >= NextRankRequirement) {
                             // PROMOTION!!!
 
-			     var UserNameResponse = axios.post(`https://users.roblox.com/v1/users/` + UserId)
+			     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + UserId)
 								     
 			     axios({
 				  method: 'post',
