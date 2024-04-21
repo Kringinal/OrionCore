@@ -122,7 +122,7 @@ module.exports = {
                     LastUpdated: Lastupdated,
                     RobloxId: Robloxid,
                     DiscordId:  Discordid
-                }).then(function(response) {
+                }).then(async function(response) {
                     const REmbed = new EmbedBuilder()
                         .setTitle(`Successfully updated ${currentuser}'s profile!`)
                         .setColor(0x5d65f3)
