@@ -41,7 +41,7 @@ module.exports = {
 
 	var MessageResponse = interaction.reply({ content: `Processing Command...`});
 
-	var EmbedList;
+	var EmbedList = []
 	    
         const { options } = interaction
 
@@ -82,7 +82,7 @@ module.exports = {
                     
                     EmbedList = EmbedList + EEmbed
                     
-                    interaction.editReply({content: "", embeds: [EmbedList]})
+                    interaction.editReply({content: "", embeds: EmbedList})
                 }
             } else {
                 var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
@@ -103,7 +103,7 @@ module.exports = {
 
 			EmbedList = EmbedList + EEmbed
                     
-                    interaction.editReply({content: "", embeds: [EmbedList]})
+                    interaction.editReply({content: "", embeds: EmbedList})
                 }
             }
 
@@ -139,7 +139,7 @@ module.exports = {
 
 			EmbedList = EmbedList + REmbed
                     
-                    interaction.editReply({content: "", embeds: [EmbedList]})
+                    interaction.editReply({content: "", embeds: EmbedList})
 
                     const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
