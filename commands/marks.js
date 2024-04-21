@@ -50,7 +50,7 @@ module.exports = {
         var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
 
          for (var pfl in Profiles.data) {
-            if (Profiles.data[pfl].DiscordId == member){
+            if (Profiles.data[pfl].DiscordId == HostUserID){
                 HostUserID = Profiles.data[pfl].replace("_Info", "")
             }
         }
@@ -62,7 +62,7 @@ module.exports = {
                 const RevisedDiscordID = currentuser.replace(/[\\<>@#&!]/g, "")
 
                 for (var pfl in Profiles.data) {
-                    if (Profiles.data[pfl].DiscordId == member){
+                    if (Profiles.data[pfl].DiscordId == RevisedDiscordID){
                         UserId = Profiles.data[pfl].replace("_Info", "")
                     }
                 }
