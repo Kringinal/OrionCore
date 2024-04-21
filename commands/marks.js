@@ -12,7 +12,7 @@ const logPromotion = require('../utils/pointlog.js');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('marks')
-    .setDescription('add/remove provided username(s) Marks.'),
+    .setDescription('add/remove provided username(s) Marks.')
     .addStringOption((option) =>
         option.setName('addorremove')
             .setDescription('Choose whether you want to add/remove Marks.'))
@@ -33,7 +33,7 @@ module.exports = {
         option.setName('usernames')
             .setDescription('Enter the username(s) of those you would like to be affected.')
             .setRequired(true)
-    )
+    ),
 
 
     async execute(interaction) {
