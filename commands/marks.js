@@ -133,7 +133,7 @@ module.exports = {
                     const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 
-			console.log(Requirements)
+			console.log(Requirements.data)
                     if (Requirements.data[CurrRank+1] !== null) {
                         if (marks + amount >= Requirements.data[CurrRank+1]) {
                             // PROMOTION!!!
