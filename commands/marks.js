@@ -125,36 +125,34 @@ module.exports = {
                     LastUpdated: Lastupdated,
                     RobloxId: Robloxid,
                     DiscordId:  Discordid
-                }).then(async function(response) {
-		    var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${Robloxid}&size=420x420&format=Png&isCircular=true`)
-		    const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
-                    const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
-			
-                    const REmbed = new EmbedBuilder()
-			.setDescription(`**[${currentuser}](https://www.roblox.com/users/${Robloxid}/profile)** \n \n \n **${marks}** -> **` + (marks + amount) + `**`)
-                        .setColor(0x5d65f3)
-			.setThumbnail(Avatar.data.data[0].imageUrl)
-                        .setTimestamp()
-
-			await interaction.channel.send({content: "", embeds: [REmbed]})
-
-			console.log(Requirements.data)
-                    if (Requirements.data[CurrRank+1] !== null) {
-                        if (marks + amount >= Requirements.data[CurrRank+1]) {
-			     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + Robloxid)
-								     
-			     axios({
-				  method: 'post',
-				  url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
-				  headers: {}, 
-				  data: {
-				    userid: Robloxid,
-				    username: UserNameResponse.data.name,
-				  }
-			     });
-                        }
-                    }
                 })
+	   	 var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${Robloxid}&size=420x420&format=Png&isCircular=true`)
+	    	const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
+	    	const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+		
+	   	 const REmbed = new EmbedBuilder()
+			.setDescription(`**[${currentuser}](https://www.roblox.com/users/${Robloxid}/profile)** \n \n \n **${marks}** -> **` + (marks + amount) + `**`)
+			.setColor(0x5d65f3)
+			.setThumbnail(Avatar.data.data[0].imageUrl)
+			.setTimestamp()
+
+		await interaction.channel.send({content: "", embeds: [REmbed]})
+
+		console.log(Requirements.data)
+	      if (Requirements.data[CurrRank+1] !== null) {
+		if (marks + amount >= Requirements.data[CurrRank+1]) {
+		     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + Robloxid)				     
+		        axios({
+			     method: 'post',
+			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
+			     headers: {}, 
+			     data: {
+			       userid: Robloxid,
+			       username: UserNameResponse.data.name,
+			     }
+		        });
+		   }
+	       }
             } else {
 		const EEmbed = new EmbedBuilder()
 		.setTitle('COULD NOT EDIT PROFILE')
