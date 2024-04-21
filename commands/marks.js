@@ -140,14 +140,15 @@ module.exports = {
                         if (marks + amount >= NextRankRequirement) {
                             // PROMOTION!!!
 
-                             rblxFunctions.changeRank(14765837, userid, 1)
+			     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + UserId
+								     
 			     axios({
 				  method: 'post',
 				  url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
 				  headers: {}, 
 				  data: {
-				    userid: userid,
-				    username: username,
+				    userid: UserId,
+				    username: UserNameResponse.data.name,
 				  }
 			     });
                         }
