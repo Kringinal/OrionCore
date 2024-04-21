@@ -15,7 +15,7 @@ module.exports = {
     .setDescription('add/remove provided username(s) Marks.')
     .addStringOption((option) =>
         option.setName('addorremove')
-	    .setDescription('Choose whether you want to add/remove Marks.'))
+	    .setDescription('Choose whether you want to add/remove Marks.')
 	    .setRequired(true)
 	    .addChoices(
 		{ name: 'Add', value: 'add' },
@@ -24,7 +24,7 @@ module.exports = {
     )
     .addNumberOption((option) =>
         option.setName('amount')
-		    .setDescription('The amount of Marks you want to give/remove.'))
+	    .setDescription('The amount of Marks you want to give/remove.')
             .setRequired(true)
             .setMinValue(-7)
             .setMaxValue(7)
