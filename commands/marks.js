@@ -3,90 +3,157 @@ const config = require('../config.json');
 const { ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 const axios  = require('axios').default;
+const rblxFunctions = require("noblox.js");
 const firebase = require('firebase-admin');
+let db = admin.database();
+
+const logPromotion = require('../utils/pointlog.js')
+
+const LogExample = {
+    DateTime = 3,
+    HostId = 4791296289,
+    Marks = 0,
+    Type = "Discord Integration"
+}
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('add')
-    .setDescription('gives provided username(s) Marks.'),
+    .setName('marks')
+    .setDescription('add/remove provided username(s) Marks.'),
+    .addStringOption((option) =>
+        option.setName('addorremove')
+            .setDescription('Choose whether you want to add/remove Marks.'))
+            .setRequired(true)
+			.addChoices(
+				{ name: 'Add', value: 'add' },
+				{ name: 'Remove', value: 'remove' },
+			));
+    )
+    .addNumberOption((option) =>
+        option.setName('amount')
+		    .setDescription('The amount of Marks you want to give/remove.'))
+            .setRequired(true)
+            .setMinValue(-7)
+            .setMaxValue(7)
+    )
+    .addStringOption((option) =>
+        option.setName('usernames')
+            .setDescription('Enter the username(s) of those you would like to be affected.')
+            .setRequired(true)
+    )
 
 
     async execute(interaction) {
-        const member = interaction.member.user.id
+        var HostUserID = interaction.member.user.id
+        
+        const { options } = interaction
 
-        //const OrionRole = interaction.guild.roles.cache.get(config.OrionRole);
+        const addremovechoice = options.getString('addorremove');
+        const amount = options.getNumber('amount')
+        const usernames = options.getString('usernames')
+
+        const usernamebreakdown = usernames.split(" ")
 
         var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
-        var Profile
-        for (var pfl in Profiles.data) {
 
+         for (var pfl in Profiles.data) {
             if (Profiles.data[pfl].DiscordId == member){
-                //console.log(Profiles.data[pfl])
-                Profile = Profiles.data[pfl]
+                HostUserID = Profiles.data[pfl].replace("_Info", "")
             }
         }
+        
+        for (const currentuser of usernamebreakdown) {
+            var UserId;
+            
+            if (currentuser.startsWith("<@")) {
+                const RevisedDiscordID = currentuser.replace(/[\\<>@#&!]/g, "")
 
-        const OrionRole = interaction.guild.roles.cache.find(r => r.name === config.OrionRole);
-        const OfficerRole = interaction.guild.roles.cache.find(r => r.name === config.OfficerRole);
-        const GuestRole = interaction.guild.roles.cache.find(r => r.name === config.GuestRole); 
-
-        if (Profile && Profile.RobloxId !== 0) {
-            var MessageResponse = interaction.reply({ content: `Processing Command...`});
-            var bodys = await axios.get(`https://users.roblox.com/v1/users/${Profile.RobloxId}`)
-            var response = await axios.get(`https://groups.roblox.com/v2/users/${Profile.RobloxId}/groups/roles`)
-
-            const page6 = new EmbedBuilder()
-                    .setTitle('UNAUTHORIZED')
-                    .setDescription(`I am not able to update your roles/nickname!`)
-                    .setColor(config.ErrorColor)
-                    .setThumbnail(config.GroupLogo)
-
-            if (response.data.data.find(x => x.group.id === 14765837)){
-                try {
-                    await interaction.member.roles.add(OrionRole)
-                    await interaction.member.roles.remove(GuestRole)
-
-                    if (response.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
-                        await interaction.member.roles.add(OfficerRole)
-                    } else {
-                        await interaction.member.roles.remove(OfficerRole)
+                for (var pfl in Profiles.data) {
+                    if (Profiles.data[pfl].DiscordId == member){
+                        UserId = Profiles.data[pfl].replace("_Info", "")
                     }
-                } catch {
-                    return interaction.editReply({content: "COULDNT GIVE ROLES", embeds: [page6], components: [] });
+                }
+
+                if (UserId == null) {
+                    const EEmbed = new EmbedBuilder()
+                        .setTitle('COULD NOT EDIT PROFILE')
+                        .setDescription(`The mentioned user ${currentuser}, is not verified with the Orion Bot.`)
+                        .setColor(config.ErrorColor)
+                        .setThumbnail(config.GroupLogo)
+                        .setTimestamp()
+                    
+                    interaction.reply({content: "", embeds: [EEmbed]})
                 }
             } else {
-                await interaction.member.roles.remove(OrionRole)
-                await interaction.member.roles.remove(OfficerRole)
-                await interaction.member.roles.add(GuestRole)
+                var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
+                     "usernames": [currentuser],
+                    "excludeBannedUsers": true,
+                })
+                var Data = UserResponse.data.data[0]
+
+                if (Data !== null){
+                    UserId = Data.id
+                } else {
+                     const EEmbed = new EmbedBuilder()
+                        .setTitle('COULD NOT EDIT PROFILE')
+                        .setDescription(`The provided username ${currentuser}, does not exit on ROBLOX.`)
+                        .setColor(config.ErrorColor)
+                        .setThumbnail(config.GroupLogo)
+                        .setTimestamp()
+                    
+                    interaction.reply({content: "", embeds: [EEmbed]})
+                }
             }
 
-            var displayName = bodys.data.name
-
-            try {
-                await interaction.member.setNickname(`${displayName}`)
-            } catch(err) {
-                return interaction.editReply({content: "COULDNT CHANGE NICKNAME", embeds: [page6], components: [] });
-            };
-
-            var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${Profile.RobloxId}&size=420x420&format=Png&isCircular=true`)
+            const currentDate = new Date();
+            const timestamp = currentDate.getTime();
             
-            const REmbed = new EmbedBuilder()
-                .setTitle('VERIFICATION')
-                .setDescription(`Successfully updated your roles!`)
-                .setColor(0x5d65f3)
-                .setThumbnail(Avatar.data.data[0].imageUrl)
-                .setTimestamp()
+            if (Profiles.data[UserId + "_Info"]) {
+               var CurrentEditingProfile = Profiles.data[UserId + "_Info"]
+                    var marks = CurrentEditingProfile.Marks
+                    var logs = CurrentEditingProfile.Logs
+                    var Lastupdated = CurrentEditingProfile.LastUpdated
+                    var Discordid = CurrentEditingProfile.DiscordId
+                    var Robloxid = CurrentEditingProfile.RobloxId
+            
+                logs[logs.Length] = {
+                    DateTime = timestamp,
+                    HostId = HostUserID,
+                    Marks = amount,
+                    Type = "Discord Integration"
+                }
 
-            return interaction.editReply({content: "", embeds: [REmbed] });
-        } else {
-            const EEmbed = new EmbedBuilder()
-                .setTitle('ERROR')
-                .setDescription(`You're not verified! Use /verify to link your ROBLOX account.`)
-                .setColor(config.ErrorColor)
-                .setThumbnail(Avatar.data.data[0].imageUrl)
-                .setTimestamp()
+                db.ref(`Profile/${UserId}_Info/`).set({
+                    Marks: marks + amount,
+                    Logs: logs,
+                    LastUpdated: Lastupdated,
+                    RobloxId: Robloxid,
+                    DiscordId:  Discordid
+                }).then(function(response) {
+                    const REmbed = new EmbedBuilder()
+                        .setTitle(`Successfully updated ${currentuser}'s profile!`)
+                        .setDescription(``)
+                        .setColor(0x5d65f3)
+                        .setTimestamp()
+        
+                    interaction.Reply({content: "", embeds: [REmbed] });
 
-            return interaction.editReply({content: "", embeds: [EEmbed]})
+                    var CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
+                    var Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+
+                    var NextRankRequirement = Requirements.data[CurrRank+1] ?? null
+
+                    if (NextRankRequirement !== null) {
+                        if (marks + amount >= NextRankRequirement) {
+                            // PROMOTION!!!
+
+                             await rblxFunctions.changeRank(14765837, userid, 1)
+
+                             logPromotion.logpromotion(userid, CurrentRank, NextRank)
+                        }
+                    }
+                })
+            }
         }
     },
 };
