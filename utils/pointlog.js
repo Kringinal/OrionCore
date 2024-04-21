@@ -23,8 +23,8 @@ module.exports = {
       .setColor(`#8CFF00`)       
       .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
 
-       const guild = client.guilds.cache.get('1127497593941934161');
-       const channel =  guild.cache.channels.get('1127497595045040216');
+       const guild = client.guilds.cache.get('1230822219433771051');
+       const channel =  guild.cache.channels.get('1230822220603854872');
        return channel.send({ embeds: [embed] })
     } catch (er) {
       console.log(er)
@@ -47,8 +47,8 @@ module.exports = {
       .setColor(`#8CFF00`)       
       .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
 
-       const guild = client.guilds.cache.get('1127497593941934161');
-       const channel =  guild.cache.channels.get('1127497595045040216');
+       const guild = client.guilds.cache.get('1230822219433771051');
+       const channel =  guild.cache.channels.get('1230822220603854872');
        return channel.send({ embeds: [embed] })
     } catch (er) {
       console.log(er)
@@ -57,8 +57,8 @@ module.exports = {
 
   sendmessage: async function (ChannelId, embeds) {
     try {
-       const guild = client.guilds.cache.get('1127497593941934161');
-       const channel =  guild.cache.channels.get('1127497595045040216');
+       const guild = client.guilds.cache.get('1230822219433771051');
+       const channel =  guild.cache.channels.get('1230822220603854872');
        return channel.send({embeds})
     } catch (er) {
       console.log(er)
