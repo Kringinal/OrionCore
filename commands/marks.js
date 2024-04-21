@@ -126,17 +126,17 @@ module.exports = {
                     DiscordId:  Discordid
                 }).then(async function(response) {
 		    var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${UserId}&size=420x420&format=Png&isCircular=true`)
+		    const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
+                    const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+			
                     const REmbed = new EmbedBuilder()
                         .setTitle(`[${currentuser}](https://www.roblox.com/users/${UserId}/profile)`)
-			.setDescription(`${marks} -> ` + (marks + amount) + `\n \n `+ (Requirements.data[CurrRank+1] || 0 + `more Marks for ` + noblox.getRole(14765837, CurrRank+1)))
+			.setDescription(`${marks} -> ` + (marks + amount) + `\n \n `+ (Requirements.data[CurrRank+1] || 0 + `more Marks for ` + rblxFunctions.getRole(14765837, CurrRank+1)))
                         .setColor(0x5d65f3)
 			.setThumbnail(Avatar.data.data[0].imageUrl)
                         .setTimestamp()
 
 			interaction.channel.send({content: "", embeds: [REmbed]})
-
-                    const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
-                    const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 
 			console.log(Requirements.data)
                     if (Requirements.data[CurrRank+1] !== null) {
