@@ -15,12 +15,12 @@ module.exports = {
     .setDescription('add/remove provided username(s) Marks.')
     .addStringOption((option) =>
         option.setName('addorremove')
-            .setDescription('Choose whether you want to add/remove Marks.'))
-            .setRequired(true)
-			.addChoices(
-				{ name: 'Add', value: 'add' },
-				{ name: 'Remove', value: 'remove' },
-			));
+	    .setDescription('Choose whether you want to add/remove Marks.'))
+	    .setRequired(true)
+	    .addChoices(
+		{ name: 'Add', value: 'add' },
+		{ name: 'Remove', value: 'remove' },
+	    ))
     )
     .addNumberOption((option) =>
         option.setName('amount')
