@@ -116,7 +116,7 @@ module.exports = {
                     Type: "Discord Integration"
                 }
 
-               	async db.ref(`Profile/${UserId}_Info/`).set({
+               	db.ref(`Profile/${UserId}_Info/`).set({
                     Marks: marks + amount,
                     Logs: logs,
                     LastUpdated: Lastupdated,
@@ -131,16 +131,16 @@ module.exports = {
         
                     interaction.Reply({content: "", embeds: [REmbed] });
 
-                    var CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
-                    var Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+                    const CurrRank = rblxFunctions.getRankInGroup(14765837, UserId)
+                    const Requirements = axios.get(`${config.firebaseURL}Requirements.json`)
 
-                    var NextRankRequirement = Requirements.data[CurrRank+1] ?? null
+                    const NextRankRequirement = Requirements.data[CurrRank+1] ?? null
 
                     if (NextRankRequirement !== null) {
                         if (marks + amount >= NextRankRequirement) {
                             // PROMOTION!!!
 
-                             await rblxFunctions.changeRank(14765837, userid, 1)
+                             rblxFunctions.changeRank(14765837, userid, 1)
 
                              logPromotion.logpromotion(userid, CurrentRank, NextRank)
                         }
