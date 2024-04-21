@@ -7,7 +7,7 @@ const rblxFunctions = require("noblox.js");
 const firebase = require('firebase-admin');
 let db = admin.database();
 
-const logPromotion = require('../utils/pointlog.js')
+const logPromotion = require('../utils/pointlog.js');
 
 const LogExample = {
     DateTime = 3,
