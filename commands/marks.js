@@ -130,8 +130,7 @@ module.exports = {
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 			
                     const REmbed = new EmbedBuilder()
-                        .setTitle(`[${currentuser}](https://www.roblox.com/users/${UserId}/profile)`)
-			.setDescription(`${marks} -> ` + (marks + amount) + `\n \n `+ (Requirements.data[CurrRank+1] || 0 + `more Marks for ` + rblxFunctions.getRole(14765837, CurrRank+1)))
+			.setDescription(`**[${currentuser}](https://www.roblox.com/users/${UserId}/profile)** \n \n ${marks} -> ` + (marks + amount) + `\n **`+ (Requirements.data[CurrRank+1] || 0) + ` more Marks for ` + await rblxFunctions.getRole(14765837, CurrRank+1).name + `**`)
                         .setColor(0x5d65f3)
 			.setThumbnail(Avatar.data.data[0].imageUrl)
                         .setTimestamp()
