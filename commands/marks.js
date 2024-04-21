@@ -116,7 +116,7 @@ module.exports = {
                     Type: "Discord Integration"
                 }
 
-               	db.ref(`Profile/${UserId}_Info/`).set({
+               	db.ref(`Profiles/${UserId}_Info/`).set({
                     Marks: marks + amount,
                     Logs: logs,
                     LastUpdated: Lastupdated,
