@@ -125,7 +125,6 @@ module.exports = {
                 }).then(function(response) {
                     const REmbed = new EmbedBuilder()
                         .setTitle(`Successfully updated ${currentuser}'s profile!`)
-                        .setDescription(``)
                         .setColor(0x5d65f3)
                         .setTimestamp()
         
