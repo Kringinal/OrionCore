@@ -131,9 +131,9 @@ module.exports = {
                     interaction.reply({content: "", embeds: [REmbed] });
 
                     const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
-                    const Requirements = axios.get(`${config.firebaseURL}Requirements.json`)
+                    const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 
-			console.log(Requirements.data)
+			console.log(Requirements)
                     if (Requirements.data[CurrRank+1] !== null) {
                         if (marks + amount >= Requirements.data[CurrRank+1]) {
                             // PROMOTION!!!
