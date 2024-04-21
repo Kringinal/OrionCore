@@ -135,7 +135,7 @@ module.exports = {
 			.setThumbnail(Avatar.data.data[0].imageUrl)
                         .setTimestamp()
 
-			interaction.channel.send({content: "", embeds: [REmbed]})
+			await interaction.channel.send({content: "", embeds: [REmbed]})
 
 			console.log(Requirements.data)
                     if (Requirements.data[CurrRank+1] !== null) {
