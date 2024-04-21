@@ -59,7 +59,7 @@ module.exports = {
         }
         
         for (const currentuser of usernamebreakdown) {
-            var UserId;
+            var UserId = null
             
             if (currentuser.startsWith("<@")) {
                 const RevisedDiscordID = currentuser.toString().replace(/[\\<>@#&!]/g, "")
@@ -155,7 +155,16 @@ module.exports = {
                         }
                     }
                 })
-            }
+            } else {
+		const EEmbed = new EmbedBuilder()
+		.setTitle('COULD NOT EDIT PROFILE')
+		.setDescription(`The mentioned user ${currentuser}, is not verified with the Orion Bot.`)
+		.setColor(config.ErrorColor)
+		.setThumbnail(config.GroupLogo)
+		.setTimestamp()
+
+	    	interaction.channel.send({content: "", embeds: [EEmbed]})
+	    }
         }
     },
 };
