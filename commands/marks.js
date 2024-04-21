@@ -40,8 +40,6 @@ module.exports = {
         var HostUserID = interaction.member.user.id
 
 	var MessageResponse = interaction.reply({ content: `Processing Command...`});
-
-	var EmbedList = []
 	    
         const { options } = interaction
 
@@ -79,10 +77,8 @@ module.exports = {
                         .setColor(config.ErrorColor)
                         .setThumbnail(config.GroupLogo)
                         .setTimestamp()
-                    
-                    EmbedList = EmbedList + EEmbed
-                    
-                    interaction.editReply({content: "", embeds: EmbedList})
+
+		    interaction.channel.send({content: "", embeds: [EEmbed]})
                 }
             } else {
                 var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
@@ -101,9 +97,7 @@ module.exports = {
                         .setThumbnail(config.GroupLogo)
                         .setTimestamp()
 
-			EmbedList = EmbedList + EEmbed
-                    
-                    interaction.editReply({content: "", embeds: EmbedList})
+			interaction.channel.send({content: "", embeds: [EEmbed]})
                 }
             }
 
@@ -137,9 +131,7 @@ module.exports = {
                         .setColor(0x5d65f3)
                         .setTimestamp()
 
-			EmbedList = EmbedList + REmbed
-                    
-                    interaction.editReply({content: "", embeds: EmbedList})
+			interaction.channel.send({content: "", embeds: [REmbed]})
 
                     const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
