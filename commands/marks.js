@@ -141,8 +141,15 @@ module.exports = {
                             // PROMOTION!!!
 
                              rblxFunctions.changeRank(14765837, userid, 1)
-
-                             logPromotion.logpromotion(userid, CurrentRank, NextRank)
+			     axios({
+				  method: 'post',
+				  url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
+				  headers: {}, 
+				  data: {
+				    userid: userid,
+				    username: username,
+				  }
+			     });
                         }
                     }
                 })
