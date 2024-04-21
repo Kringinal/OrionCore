@@ -20,7 +20,7 @@ module.exports = {
 	    .addChoices(
 		{ name: 'Add', value: 'add' },
 		{ name: 'Remove', value: 'remove' },
-	    ))
+	    )
     )
     .addNumberOption((option) =>
         option.setName('amount')
