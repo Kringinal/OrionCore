@@ -59,7 +59,7 @@ module.exports = {
             var UserId;
             
             if (currentuser.startsWith("<@")) {
-                const RevisedDiscordID = currentuser.replace(/[\\<>@#&!]/g, "")
+                const RevisedDiscordID = currentuser.toString().replace(/[\\<>@#&!]/g, "")
 
                 for (var pfl in Profiles.data) {
                     if (Profiles.data[pfl].DiscordId == RevisedDiscordID){
