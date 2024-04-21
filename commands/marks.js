@@ -38,7 +38,11 @@ module.exports = {
 
     async execute(interaction) {
         var HostUserID = interaction.member.user.id
-        
+
+	var MessageResponse = interaction.reply({ content: `Processing Command...`});
+
+	var EmbedList;
+	    
         const { options } = interaction
 
         const addremovechoice = options.getString('addorremove');
@@ -51,7 +55,7 @@ module.exports = {
 
          for (var pfl in Profiles.data) {
             if (Profiles.data[pfl].DiscordId == HostUserID){
-                HostUserID = Profiles.data[pfl].toString().replace("_Info", "")
+                HostUserID = Profiles.data[pfl].RobloxId
             }
         }
         
@@ -75,7 +79,9 @@ module.exports = {
                         .setThumbnail(config.GroupLogo)
                         .setTimestamp()
                     
-                    interaction.reply({content: "", embeds: [EEmbed]})
+                    EmbedList = EmbedList + EEmbed
+                    
+                    interaction.reply({content: "", embeds: [EmbedList]})
                 }
             } else {
                 var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
@@ -93,8 +99,10 @@ module.exports = {
                         .setColor(config.ErrorColor)
                         .setThumbnail(config.GroupLogo)
                         .setTimestamp()
+
+			EmbedList = EmbedList + EEmbed
                     
-                    interaction.reply({content: "", embeds: [EEmbed]})
+                    interaction.reply({content: "", embeds: [EmbedList]})
                 }
             }
 
@@ -109,7 +117,7 @@ module.exports = {
                     var Discordid = CurrentEditingProfile.DiscordId
                     var Robloxid = CurrentEditingProfile.RobloxId
             
-                logs[logs.Length] = {
+                logs[logs.length] = {
                     DateTime: timestamp,
                     HostId: HostUserID,
                     Marks: amount,
@@ -127,8 +135,10 @@ module.exports = {
                         .setTitle(`Successfully updated ${currentuser}'s profile!`)
                         .setColor(0x5d65f3)
                         .setTimestamp()
-        
-                    interaction.reply({content: "", embeds: [REmbed] });
+
+			EmbedList = EmbedList + REmbed
+                    
+                    interaction.reply({content: "", embeds: [EmbedList]})
 
                     const CurrRank = await rblxFunctions.getRankInGroup(14765837, UserId)
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
@@ -136,8 +146,6 @@ module.exports = {
 			console.log(Requirements.data)
                     if (Requirements.data[CurrRank+1] !== null) {
                         if (marks + amount >= Requirements.data[CurrRank+1]) {
-                            // PROMOTION!!!
-
 			     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + UserId)
 								     
 			     axios({
