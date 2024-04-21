@@ -131,7 +131,7 @@ module.exports = {
                     const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 			
                     const REmbed = new EmbedBuilder()
-			.setDescription(`**[${currentuser}](https://www.roblox.com/users/${Robloxid}/profile)** \n \n **${marks}** -> **` + (marks + amount) + `**`)
+			.setDescription(`**[${currentuser}](https://www.roblox.com/users/${Robloxid}/profile)** \n \n \n **${marks}** -> **` + (marks + amount) + `**`)
                         .setColor(0x5d65f3)
 			.setThumbnail(Avatar.data.data[0].imageUrl)
                         .setTimestamp()
