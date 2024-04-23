@@ -74,7 +74,7 @@ module.exports = {
                     }
                 }
 
-                if (UserId == null) {
+                if (UserId == null) {	
                     const EEmbed = new EmbedBuilder()
                         .setTitle('COULD NOT EDIT PROFILE')
                         .setDescription(`The mentioned user ${currentuser}, is not verified with the Orion Bot.`)
@@ -133,9 +133,10 @@ module.exports = {
 	   	 var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${Robloxid}&size=420x420&format=Png&isCircular=true`)
 	    	const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
 	    	const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
-		
+		const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)	
+		    
 	   	 const REmbed = new EmbedBuilder()
-			 .setTitle(`**${currentuser}**`)
+			 .setTitle(`**${UserNameResponse.data.name}**`)
 			.setURL(`https://www.roblox.com/users/${Robloxid}/profile`)
 			.setDescription(`\n \n **${marks}** -> **` + (marks + amount) + `**`)
 			.setColor(0x5d65f3)
@@ -147,7 +148,7 @@ module.exports = {
 		console.log(Requirements.data)
 	      if (Requirements.data[CurrRank+1] !== null) {
 		if (marks + amount >= Requirements.data[CurrRank+1]) {
-		     var UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)				     
+		     const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)				     
 		        axios({
 			     method: 'post',
 			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
