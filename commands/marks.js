@@ -147,7 +147,7 @@ module.exports = {
 		        axios({
 			     method: 'post',
 			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
-			     headers: {}, 
+			     headers: {'Content-Type': 'text/plain',}, 
 			     data: {
 			       userid: Robloxid,
 			       username: UserNameResponse.data.name,
