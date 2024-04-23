@@ -143,7 +143,7 @@ module.exports = {
 		console.log(Requirements.data)
 	      if (Requirements.data[CurrRank+1] !== null) {
 		if (marks + amount >= Requirements.data[CurrRank+1]) {
-		     var UserNameResponse = await axios.post(`https://users.roblox.com/v1/users/` + Robloxid)				     
+		     var UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)				     
 		        axios({
 			     method: 'post',
 			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
