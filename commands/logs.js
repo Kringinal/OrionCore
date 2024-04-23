@@ -7,6 +7,7 @@ const rblxFunctions = require("noblox.js");
 const firebase = require('firebase-admin');
 let db = firebase.database();
 
+
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('logs')
