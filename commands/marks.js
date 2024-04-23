@@ -44,7 +44,7 @@ module.exports = {
         const { options } = interaction
 
         const addremovechoice = options.getString('addorremove');
-        const amount = options.getNumber('amount')
+        var amount = options.getNumber('amount')
         const usernames = options.getString('usernames')
 
 	if (addremovechoice == 'remove') {
