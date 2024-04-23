@@ -23,7 +23,7 @@ module.exports = {
 	      var MessageResponse = interaction.channel.send({ content: `Processing Command...`});
 	    
         const { options } = interaction
-        const username = options.getString('username')
+        var username = options.getString('username')
 
        if (username == null) {
          username = `<@` + interaction.member.user.id + `>`
