@@ -47,6 +47,10 @@ module.exports = {
         const amount = options.getNumber('amount')
         const usernames = options.getString('usernames')
 
+	if (addremovechoice == 'remove') {
+	    amount = -amount
+	}
+
         const usernamebreakdown = usernames.split(" ")
 	console.log(usernamebreakdown.length)
 	    
