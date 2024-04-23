@@ -180,7 +180,7 @@ module.exports = {
                      interaction.editReply({ embeds: [UpdatedEmbed], components: [normalrow] });
                   }
                 }
-             }       
-         });
+             })   
+         })
     },
 };
