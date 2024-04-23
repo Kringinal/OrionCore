@@ -20,7 +20,6 @@ module.exports = {
 
 
     async execute(interaction) {
-	      var MessageResponse = interaction.channel.send({ content: `Processing Command...`});
 	    
         const { options } = interaction
         var username = options.getString('username')
@@ -150,7 +149,7 @@ module.exports = {
 
                   let UpdatedEmbed = new EmbedBuilder()
                     .setTitle(`${UserNameResponse.data.name}'s Logs (${currentlog}/${maxLogs})`)
-                    .setDescription(`EVENT TYPE: **${CurrentLogInfo.Type}** \nHOST: **${CurrentHostInfo.data.name}** \nAMOUNT: ${CurrentLogInfo.Marks}`)
+                    .setDescription(`EVENT TYPE: **${CurrentLogInfo.Type}** \nHOST: **${CurrentHostInfo.data.name}** \nAMOUNT: **${CurrentLogInfo.Marks}**`)
                     .setColor(0x5d65f3)
                     .setThumbnail(CurrentHostAvatar.data.data[0].imageUrl)
                     .setTimestamp(CurrentLogInfo.DateTime)
@@ -169,7 +168,7 @@ module.exports = {
 
                   let UpdatedEmbed = new EmbedBuilder()
                     .setTitle(`${UserNameResponse.data.name}'s Logs (${currentlog}/${maxLogs})`)
-                    .setDescription(`EVENT TYPE: **${CurrentLogInfo.Type}** \nHOST: **${CurrentHostInfo.data.name}** \nAMOUNT: ${CurrentLogInfo.Marks}`)
+                    .setDescription(`EVENT TYPE: **${CurrentLogInfo.Type}** \nHOST: **${CurrentHostInfo.data.name}** \nAMOUNT: **${CurrentLogInfo.Marks}**`)
                     .setColor(0x5d65f3)
                     .setThumbnail(CurrentHostAvatar.data.data[0].imageUrl)
                     .setTimestamp(CurrentLogInfo.DateTime)
