@@ -74,7 +74,7 @@ module.exports = {
         }
 
          if (Profiles.data[UserId + "_Info"]) {
-           const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)
+           const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + UserId)
             var CurrentEditingProfile = Profiles.data[UserId + "_Info"]
             var logs = CurrentEditingProfile.Logs
 
