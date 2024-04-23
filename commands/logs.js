@@ -129,7 +129,7 @@ module.exports = {
 
            let StartEmbed = new EmbedBuilder()
               .setTitle(`${UserNameResponse.data.name}'s Logs (${currentlog}/${maxLogs})`)
-              .setDescription(`EVENT TYPE: **${StartingLogInfo.Type}** \nHOST: **${StartingHostInfo.data.name}** \nAMOUNT: ${StartingLogInfo.Marks}`)
+              .setDescription(`EVENT TYPE: **${StartingLogInfo.Type}** \nHOST: **${StartingHostInfo.data.name}** \nAMOUNT: **${StartingLogInfo.Marks}**`)
               .setColor(0x5d65f3)
               .setThumbnail(StartingHostAvatar.data.data[0].imageUrl)
               .setTimestamp(StartingLogInfo.DateTime)
