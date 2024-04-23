@@ -34,7 +34,7 @@ module.exports = {
         var UserId = null
 
         if (username.startsWith("<@")) {
-          const RevisedDiscordID = currentuser.toString().replace(/[\\<>@#&!]/g, "")
+          const RevisedDiscordID = username.toString().replace(/[\\<>@#&!]/g, "")
 
           for (var pfl in Profiles.data) {
               if (Profiles.data[pfl].DiscordId == RevisedDiscordID){
@@ -45,7 +45,7 @@ module.exports = {
            if (UserId == null) {	
             const EEmbed = new EmbedBuilder()
               .setTitle('COULD NOT EDIT PROFILE')
-              .setDescription(`The mentioned user ${currentuser}, is not verified with the Orion Bot.`)
+              .setDescription(`The mentioned user ${username}, is not verified with the Orion Bot.`)
               .setColor(config.ErrorColor)
               .setThumbnail(config.GroupLogo)
               .setTimestamp()
@@ -54,7 +54,7 @@ module.exports = {
            }
         } else {
             var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
-                 "usernames": [currentuser],
+                 "usernames": [username],
                 "excludeBannedUsers": true,
             })
               var Data = UserResponse.data.data[0]
@@ -64,7 +64,7 @@ module.exports = {
               } else {
                  const EEmbed = new EmbedBuilder()
                     .setTitle('COULD NOT EDIT PROFILE')
-                    .setDescription(`The provided username ${currentuser}, does not exist on ROBLOX.`)
+                    .setDescription(`The provided username ${username}, does not exist on ROBLOX.`)
                     .setColor(config.ErrorColor)
                     .setThumbnail(config.GroupLogo)
                     .setTimestamp()
