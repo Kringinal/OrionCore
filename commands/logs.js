@@ -7,8 +7,6 @@ const rblxFunctions = require("noblox.js");
 const firebase = require('firebase-admin');
 let db = firebase.database();
 
-const logPromotion = require('../utils/pointlog.js');
-
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('logs')
