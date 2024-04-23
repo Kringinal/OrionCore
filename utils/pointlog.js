@@ -11,17 +11,12 @@ module.exports = {
     const { data } = await axios.get(`http://users.roblox.com/v1/users/${TargetUserId}`);
 
     try {
-      const user = {
-        username: data.Username,
-        roblox_id: data.Id
-      };
-
      const embed = new EmbedBuilder()
       .setTitle(`**PROMOTION**`)
-      .setDescription(`[${user.username}](https://www.roblox.com/users/${user.roblox_id}/profile) has been promoted! \n \n PREV: **${OldRank} ** \n NEW: **${NewRank}**`)
+      .setDescription(`[${data.name}](https://www.roblox.com/users/${TargetUserId}/profile) has been promoted! \n \n PREV: **${OldRank} ** \n NEW: **${NewRank}**`)
       .setTimestamp()
       .setColor(`#8CFF00`)       
-      .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
+      .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${TargetUserId}&width=420&height=420&format=png`)
 
        const channel = client.channels.cache.find(ch => ch.name == "🔰┊promotions")
        return channel.send({ embeds: [embed] })
@@ -34,17 +29,13 @@ module.exports = {
     const { data } = await axios.get(`http://users.roblox.com/v1/users/${TargetUserId}`);
 
     try {
-      const user = {
-        username: data.Username,
-        roblox_id: data.Id
-      };
 
      const embed = new EmbedBuilder()
       .setTitle(`**ACCEPTANCE**`)
-      .setDescription(`[${user.username}](https://www.roblox.com/users/${user.roblox_id}/profile) has been accepted into **Orion Core**! \n \n **ACCEPTANCE OBBY COMPLETED**`)
+      .setDescription(`[${data.name}](https://www.roblox.com/users/${TargetUserId}/profile) has been accepted into **Orion Core**! \n \n **ACCEPTANCE OBBY COMPLETED**`)
       .setTimestamp()
       .setColor(`#8CFF00`)       
-      .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${user.roblox_id}&width=420&height=420&format=png`)
+      .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${TargetUserId}&width=420&height=420&format=png`)
 
        const channel = client.channels.cache.find(ch => ch.name == "🔰┊promotions")
        return channel.send({ embeds: [embed] })
