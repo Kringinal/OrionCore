@@ -101,7 +101,7 @@ module.exports = {
 	    var Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 	    var NextAmount = 0
 
-	    if (Requirements.data[NewRankId] !== null) {
+	    if (Requirements.data[NewRankId]) {
 		NextAmount = Requirements.data[NewRankId]
 	    }
 
