@@ -26,7 +26,7 @@ module.exports = {
         option.setName('amount')
 	    .setDescription('The amount of Marks you want to give/remove.')
             .setRequired(true)
-            .setMinValue(-7)
+            .setMinValue(1)
             .setMaxValue(7)
     )
     .addStringOption((option) =>
