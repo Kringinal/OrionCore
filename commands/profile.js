@@ -101,8 +101,8 @@ module.exports = {
 	    var Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
 	    var NextAmount = 0
 
-	    if (Requirements[NewRankId] !== null) {
-		NextAmount = Requirements[NewRankId]
+	    if (Requirements.data[NewRankId] !== null) {
+		NextAmount = Requirements.data[NewRankId]
 	    }
 
 	    var Percentage = UserProfile.Marks / NextAmount
@@ -135,7 +135,7 @@ module.exports = {
 	    let StartEmbed = new EmbedBuilder()
               .setTitle(`${UserNameResponse.data.name}`)
 	      .setURL(`https://www.roblox.com/users/${UserId}/profile`)
-              .setDescription(`${PercentBar} **${Percentage * 100}%** \n \nRank: **${OldRank}** \nMarks: **${UserProfile.Marks}** \n \n**${NextAmount - UserProfile.Marks}** Marks remaining for **${NextRank} (${NextAmount} Marks)**`)
+              .setDescription(`${PercentBar} **${Percentage * 100}%** \n \nRank: **${OldRankName}** \nMarks: **${UserProfile.Marks}** \n \n**${NextAmount - UserProfile.Marks}** Marks remaining for **${NextRank} (${NextAmount} Marks)**`)
               .setColor(0x5d65f3)
               .setThumbnail(Avatar.data.data[0].imageUrl)
               .setTimestamp()
