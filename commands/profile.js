@@ -73,7 +73,7 @@ module.exports = {
         }
 
         if (Profiles.data[UserId + "_Info"]) {
-	    const UserProfile = Profile.data[UserId + "_Info"]
+	    const UserProfile = Profiles.data[UserId + "_Info"]
 	    const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + UserId)
 	    const OldRank = await rblxFunctions.getRankInGroup(14765837, UserId)
 	    const GroupRanks = await rblxFunctions.getRoles(14765837)
