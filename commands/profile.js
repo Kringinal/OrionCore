@@ -134,7 +134,7 @@ module.exports = {
 
 	    let StartEmbed = new EmbedBuilder()
               .setTitle(`${UserNameResponse.data.name}`)
-	      .setUrl(`https://www.roblox.com/users/${UserId}/profile`)
+	      .setURL(`https://www.roblox.com/users/${UserId}/profile`)
               .setDescription(`${PercentBar} **${Percentage * 100}%** \n \nRank: **${OldRank}** \nMarks: **${UserProfile.Marks}** \n \n**${NextAmount - UserProfile.Marks}** Marks remaining for **${NextRank} (${NextAmount} Marks)**`)
               .setColor(0x5d65f3)
               .setThumbnail(Avatar.data.data[0].imageUrl)
