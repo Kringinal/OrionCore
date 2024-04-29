@@ -126,7 +126,7 @@ module.exports = {
                	db.ref(`Profiles/${UserId}_Info/`).set({
                     Marks: marks + amount,
                     Logs: logs,
-                    LastUpdated: Lastupdated,
+                    LastUpdated: timestamp,
                     RobloxId: Robloxid,
                     DiscordId:  Discordid
                 })
