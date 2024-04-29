@@ -148,7 +148,7 @@ router.post('/editmarks', async (req, res, next) =>{
 	  const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)
 
 	  if (Requirements.data[CurrRank+1] !== null) {
-		if (marks + amount >= Requirements.data[CurrRank+1]) {			     
+		if (marks + MarksAmount >= Requirements.data[CurrRank+1]) {			     
 			axios({
 			     method: 'post',
 			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
