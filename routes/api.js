@@ -162,6 +162,11 @@ router.post('/editmarks', async (req, res, next) =>{
 			   }
 		      }
 	      }
+    } catch {
+        res.status(400).json({
+	     error: 'Could not accept user!'
+         });
+	return
     }
 })
   
