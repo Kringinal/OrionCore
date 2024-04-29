@@ -114,6 +114,8 @@ router.post('/editmarks', async (req, res, next) =>{
     const MarksAmount = req.body.marks
     const EventType = req.body.type
 
+    console.log(UserId, timestamp, Host, MarksAmount, EventType)
+	
     var Profile = await axios.get(`${config.firebaseURL}Profiles/${UserId}_Info.json`)
       
       if (Profile) {
