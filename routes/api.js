@@ -113,17 +113,15 @@ router.post('/editmarks', async (req, res, next) =>{
     const Host = req.body.hostid
     const MarksAmount = req.body.marks
     const EventType = req.body.type
-
-    console.log(UserId, timestamp, Host, MarksAmount, EventType)
 	
     var Profile = await axios.get(`${config.firebaseURL}Profiles/${UserId}_Info.json`)
-      console.log(Profile)
-      if (Profile) {
-	    var marks = Profile.Marks
-	    var logs = Profile.Logs
-	    var Lastupdated = Profile.LastUpdated
-	    var Discordid = Profile.DiscordId
-	    var Robloxid = Profile.RobloxId
+	
+      if (Profile.data) {
+	    var marks = Profile.data.Marks
+	    var logs = Profile.data.Logs
+	    var Lastupdated = Profile.data.LastUpdated
+	    var Discordid = Profile.data.DiscordId
+	    var Robloxid = Profile.data.RobloxId
 
 	    console.log(logs)
 	    logs[logs.length] = {
