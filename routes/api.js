@@ -1,9 +1,12 @@
 const { Attachment } = require('discord.js')
+const config = require('../config.json');
 let express = require('express');
 let axios = require('axios').default;
 let router = express.Router();
 const rblxFunctions = require("noblox.js");
 const logPromotion = require('../utils/pointlog.js')
+const firebase = require('firebase-admin');
+let db = firebase.database();
 let client;
 
 const gamesUrl = "https://games.roblox.com/v1/games/multiget-place-details?placeIds="
@@ -101,6 +104,66 @@ router.post('/accept', async (req, res, next) =>{
         });
         return
     }
+})
+
+/* Adding Marks */
+
+router.post('/editmarks', async (req, res, next) =>{
+    const UserId = req.body.userid
+    const timestamp = req.body.timestamp
+    const Host = req.body.hostid
+    const MarksAmount = req.body.Marks
+    const EventType = req.body.Type
+
+    var Profile = await axios.get(`${config.firebaseURL}Profiles/{UserId}_Info.json`)
+
+    const currentDate = new Date();
+    const timestamp = currentDate.getTime();
+      
+      if (Profile) {
+            var marks = Profile.Marks
+            var logs = Profile.Logs
+            var Lastupdated = Profile.LastUpdated
+            var Discordid = Profile.DiscordId
+            var Robloxid = Profile.RobloxId
+
+            logs[logs.length] = {
+              DateTime: timestamp,
+              HostId: Host,
+              Marks: MarksAmount,
+              Type: EventType
+           }
+
+          db.ref(`Profiles/${UserId}_Info/`).set({
+              Marks: marks + MarksAmount,
+              Logs: logs,
+              LastUpdated: timestamp,
+              RobloxId: Robloxid,
+              DiscordId:  Discordid
+          })
+
+           res.status(201).json({
+            message: 'Edited Marks!',
+          });
+            
+          const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
+          const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+          const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)
+
+          if (Requirements.data[CurrRank+1] !== null) {
+		if (marks + amount >= Requirements.data[CurrRank+1]) {			     
+		        axios({
+			     method: 'post',
+			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
+			     headers: {'Content-Type': 'application/json',}, 
+			     data: {
+			       userid: Robloxid,
+			       username: UserNameResponse.data.name,
+			     }
+		        });
+		   }
+	      }
+      }
 })
   
 /* PROMOTE USER */
