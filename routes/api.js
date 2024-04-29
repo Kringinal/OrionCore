@@ -109,65 +109,58 @@ router.post('/accept', async (req, res, next) =>{
 /* Adding Marks */
 
 router.post('/editmarks', async (req, res, next) =>{
-    try {
-	    const UserId = req.body.userid
-	    const timestamp = req.body.timestamp
-	    const Host = req.body.hostid
-	    const MarksAmount = req.body.marks
-	    const EventType = req.body.type
-	
-	    var Profile = await axios.get(`${config.firebaseURL}Profiles/${UserId}_Info.json`)
-	      
-	      if (Profile) {
-	            var marks = Profile.Marks
-	            var logs = Profile.Logs
-	            var Lastupdated = Profile.LastUpdated
-	            var Discordid = Profile.DiscordId
-	            var Robloxid = Profile.RobloxId
-	
-	            logs[logs.length] = {
-	              DateTime: timestamp,
-	              HostId: Host,
-	              Marks: MarksAmount,
-	              Type: EventType
-	           }
-	
-	          db.ref(`Profiles/${UserId}_Info/`).set({
-	              Marks: marks + MarksAmount,
-	              Logs: logs,
-	              LastUpdated: timestamp,
-	              RobloxId: Robloxid,
-	              DiscordId:  Discordid
-	          })
-	
-	           res.status(201).json({
-	            message: 'Edited Marks!',
-	          });
-	            
-	          const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
-	          const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
-	          const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)
-	
-	          if (Requirements.data[CurrRank+1] !== null) {
-			if (marks + amount >= Requirements.data[CurrRank+1]) {			     
-			        axios({
-				     method: 'post',
-				     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
-				     headers: {'Content-Type': 'application/json',}, 
-				     data: {
-				       userid: Robloxid,
-				       username: UserNameResponse.data.name,
-				     }
-			        });
-			   }
-		      }
+    const UserId = req.body.userid
+    const timestamp = req.body.timestamp
+    const Host = req.body.hostid
+    const MarksAmount = req.body.marks
+    const EventType = req.body.type
+
+    var Profile = await axios.get(`${config.firebaseURL}Profiles/${UserId}_Info.json`)
+      
+      if (Profile) {
+	    var marks = Profile.Marks
+	    var logs = Profile.Logs
+	    var Lastupdated = Profile.LastUpdated
+	    var Discordid = Profile.DiscordId
+	    var Robloxid = Profile.RobloxId
+
+	    logs[logs.length] = {
+	      DateTime: timestamp,
+	      HostId: Host,
+	      Marks: MarksAmount,
+	      Type: EventType
+	   }
+
+	  db.ref(`Profiles/${UserId}_Info/`).set({
+	      Marks: marks + MarksAmount,
+	      Logs: logs,
+	      LastUpdated: timestamp,
+	      RobloxId: Robloxid,
+	      DiscordId:  Discordid
+	  })
+
+	   res.status(201).json({
+	    message: 'Edited Marks!',
+	  });
+	    
+	  const CurrRank = await rblxFunctions.getRankInGroup(14765837, Robloxid)
+	  const Requirements = await axios.get(`${config.firebaseURL}Requirements.json`)
+	  const UserNameResponse = await axios.get(`https://users.roblox.com/v1/users/` + Robloxid)
+
+	  if (Requirements.data[CurrRank+1] !== null) {
+		if (marks + amount >= Requirements.data[CurrRank+1]) {			     
+			axios({
+			     method: 'post',
+			     url: `https://orioncore-3b6068b75ef5.herokuapp.com/api/promote`,
+			     headers: {'Content-Type': 'application/json',}, 
+			     data: {
+			       userid: Robloxid,
+			       username: UserNameResponse.data.name,
+			     }
+			});
+		   }
 	      }
-    } catch {
-        res.status(400).json({
-	     error: 'Could not accept user!'
-         });
-	return
-    }
+      }
 })
   
 /* PROMOTE USER */
