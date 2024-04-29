@@ -107,7 +107,6 @@ router.post('/accept', async (req, res, next) =>{
 })
 
 /* Adding Marks */
-
 router.post('/editmarks', async (req, res, next) =>{
     const UserId = req.body.userid
     const timestamp = req.body.timestamp
@@ -124,6 +123,7 @@ router.post('/editmarks', async (req, res, next) =>{
 	    var Discordid = Profile.DiscordId
 	    var Robloxid = Profile.RobloxId
 
+	    console.log(logs)
 	    logs[logs.length] = {
 	      DateTime: timestamp,
 	      HostId: Host,
