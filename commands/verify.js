@@ -63,7 +63,7 @@ module.exports = {
                 var displayName = data.data.name
                 const page1 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
-                      .setDescription(`To verify account ownership, complete the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE).`)
+                      .setDescription(`To verify account ownership, complete the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE). \n \n Once completed, click DONE.`)
                       .setColor(0x5d65f3)
                       .setThumbnail(Avatar.data.data[0].imageUrl)
                       .setTimestamp()
