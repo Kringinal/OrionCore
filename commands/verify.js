@@ -125,7 +125,7 @@ module.exports = {
                     
                                 if (Profiles.data[pfl].DiscordId == member){
                                     //console.log(Profiles.data[pfl])
-                                    Profile = Profiles.data[pfl]
+                                    LastProfile = Profiles.data[pfl]
                                 }
                             }
 
