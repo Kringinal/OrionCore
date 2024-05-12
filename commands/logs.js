@@ -135,9 +135,8 @@ module.exports = {
               .setTimestamp(StartingLogInfo.DateTime)
 
           interaction.reply({ embeds: [StartEmbed], components: [row]  }).then(message => {
-	     const messagee = interaction.fetchReply();
              const filter = i => i.user.id === interaction.user.id;
-             const collector = messagee.createMessageComponentCollector({ filter, time: 300000 });
+             const collector = message.createMessageComponentCollector({ filter, time: 300000 });
 
              collector.on('collect', async i => {
                 i.deferUpdate();
