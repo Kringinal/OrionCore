@@ -20,9 +20,9 @@ module.exports = {
         const member = interaction.member.user.id
         const username = options.getString('username');
 
-        const OrionRole = interaction.guild.roles.cache.find(role => role.id === config.OrionRole);
-        const OfficerRole = interaction.guild.roles.cache.find(role => role.id === config.OfficerRole);
-        const GuestRole = interaction.guild.roles.cache.find(role => role.id === config.GuestRole);
+        const OrionRole = interaction.guild.roles.cache.find(r => r.name === config.OrionRole);
+        const OfficerRole = interaction.guild.roles.cache.find(r => r.name === config.OfficerRole);
+        const GuestRole = interaction.guild.roles.cache.find(r => r.name === config.GuestRole); 
 
         var UserResponse = await axios.post(`https://users.roblox.com/v1/usernames/users`, {
             "usernames": [username],
