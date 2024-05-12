@@ -152,7 +152,7 @@ module.exports = {
                                  return interaction.editReply({ embeds: [page6], components: [], content: `ERROR.. ${err}` });
                               };
                       
-                              return interaction.editReply({ embeds: [page3], components: [] });
+                              return interaction.editReply({ embeds: [page6], components: [] });
                           } else {
                               return interaction.editReply({ embeds: [page2], components: [row] });
                           };
