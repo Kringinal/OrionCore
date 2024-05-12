@@ -75,7 +75,7 @@ module.exports = {
                       .setTimestamp()
                   const page6 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
-                      .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}. \n \n Please use /update to update your roles!`)
+                      .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
                       .setColor(0x5d65f3)
                       .setThumbnail(Avatar.data.data[0].imageUrl)
                       .setTimestamp()
@@ -132,7 +132,7 @@ module.exports = {
                                       await interaction.member.roles.add(OrionRole)
                                       await interaction.member.roles.remove(GuestRole)
                       
-                                      if (response.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
+                                      if (GroupResponse.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
                                           await interaction.member.roles.add(OfficerRole)
                                       } else {
                                           await interaction.member.roles.remove(OfficerRole)
