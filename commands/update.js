@@ -14,8 +14,6 @@ module.exports = {
     async execute(interaction) {
         const member = interaction.member.user.id
 
-        //const OrionRole = interaction.guild.roles.cache.get(config.OrionRole);
-
         var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
         var Profile
         for (var pfl in Profiles.data) {
