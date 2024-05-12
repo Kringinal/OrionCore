@@ -150,7 +150,7 @@ module.exports = {
 
 		
 		 
-          interaction.reply({ embeds: [StartEmbed], components: [currentlog >= maxLogs && norow || row]  }).then(message => {
+          interaction.reply({ embeds: [StartEmbed], components: [minLogs >= maxLogs && norow || row]  }).then(message => {
              const filter = i => i.user.id === interaction.user.id;
              const collector = message.createMessageComponentCollector({ filter, time: 300000 });
 
