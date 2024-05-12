@@ -113,6 +113,20 @@ module.exports = {
                       .setDisabled(false),
             );
 
+	   const norow = new ActionRowBuilder()
+              .addComponents(
+                  new ButtonBuilder()
+                      .setCustomId('previous')
+                      .setLabel('PREVIOUS')
+                      .setStyle(2)
+                      .setDisabled(true),
+                  new ButtonBuilder()
+                      .setCustomId('next')
+                      .setLabel('NEXT')
+                      .setStyle(2)
+                      .setDisabled(true),
+            );
+
            const disabledprev = new ActionRowBuilder()
               .addComponents(
                   new ButtonBuilder()
@@ -134,7 +148,9 @@ module.exports = {
               .setThumbnail(StartingHostAvatar.data.data[0].imageUrl)
               .setTimestamp(StartingLogInfo.DateTime)
 
-          interaction.reply({ embeds: [StartEmbed], components: [row]  }).then(message => {
+		
+		 
+          interaction.reply({ embeds: [StartEmbed], components: [currentlog == maxLogs && row || norow]  }).then(message => {
              const filter = i => i.user.id === interaction.user.id;
              const collector = message.createMessageComponentCollector({ filter, time: 300000 });
 
