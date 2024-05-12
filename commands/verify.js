@@ -8,7 +8,7 @@ const firebase = require('firebase-admin');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('verify')
-    .setDescription('Verifies a user with their ROBLOX account.')
+    .setDescription('Initiates the verification system for Orion Core.')
     .addStringOption(option =>
         option.setName('username')
             .setDescription('Your ROBLOX username.')
@@ -63,13 +63,13 @@ module.exports = {
                 var displayName = data.data.name
                 const page1 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
-                    .setDescription(`To verify account ownership, join the [verification game](${config.verificationLink}).`)
+                    .setDescription(`To verify account ownership, complete the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE).`)
                     .setColor(0x5d65f3)
                     .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
                 const page2 = new EmbedBuilder()
                     .setTitle('VERIFICATION')
-                    .setDescription(`Sorry, but it looks like you haven't completed the steps in the [verification game](${config.verificationLink}). Please complete the steps then click "DONE".`)
+                    .setDescription(`Sorry, but it looks like you haven't completed the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE). Please complete the steps then click "DONE".`)
                     .setColor(config.ErrorColor)
                     .setThumbnail(Avatar.data.data[0].imageUrl)
                     .setTimestamp()
@@ -113,18 +113,25 @@ module.exports = {
 
                 interaction.reply({ embeds: [page1], components: [row]  }).then(message => {
                     const filter = i => i.user.id === interaction.user.id;
-                    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 300000 });
+                    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 600000 });
 
                     collector.on('collect', async i => {
                         console.log(i.customId)
                         i.deferUpdate();
                         if (i.customId === 'done') {
-                           // const AwaitingMessage = aw
-                            var LastProfile = await axios.get(`${config.firebaseURL}Profiles/${UserId}_Info.json`)
+                            var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
+                            var LastProfile
+                            for (var pfl in Profiles.data) {
+                    
+                                if (Profiles.data[pfl].DiscordId == member){
+                                    //console.log(Profiles.data[pfl])
+                                    Profile = Profiles.data[pfl]
+                                }
+                            }
 
-                            if (LastProfile.data !== null && LastProfile.data.RobloxId !== 0) {
-                                console.log(LastProfile.data, LastProfile.data.RobloxId)
-                                var GroupResponse = await axios.get(`https://groups.roblox.com/v2/users/${UserId}/groups/roles`)
+                            if (LastProfile !== null && LastProfile.RobloxId !== 0) {
+                                console.log(LastProfile, LastProfile.RobloxId)
+                                var GroupResponse = await axios.get(`https://groups.roblox.com/v2/users/${LastProfile.RobloxId}/groups/roles`)
 
                                 if (GroupResponse.data.data.find(x => x.group.id === 14765837)){
                                     try {
