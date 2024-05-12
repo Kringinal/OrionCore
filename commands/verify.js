@@ -5,89 +5,6 @@ const { ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, EmbedBuilder } = r
 const axios  = require('axios').default;
 const firebase = require('firebase-admin');
 
-const page1 = new EmbedBuilder()
-                    .setTitle('VERIFICATION')
-                    .setDescription(`To verify account ownership, complete the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE).`)
-                    .setColor(0x5d65f3)
-                    .setThumbnail(Avatar.data.data[0].imageUrl)
-                    .setTimestamp()
-                const page2 = new EmbedBuilder()
-                    .setTitle('VERIFICATION')
-                    .setDescription(`Sorry, but it looks like you haven't completed the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE). Please complete the steps then click "DONE".`)
-                    .setColor(config.ErrorColor)
-                    .setThumbnail(Avatar.data.data[0].imageUrl)
-                    .setTimestamp()
-                const page3 = new EmbedBuilder()
-                    .setTitle('VERIFICATION')
-                    .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
-                    .setColor(0x5d65f3)
-                    .setThumbnail(Avatar.data.data[0].imageUrl)
-                    .setTimestamp()
-                const page4 = new EmbedBuilder()
-                    .setTitle('VERIFICATION')
-                    .setDescription(`Account verification cancelled. To try again, run /verify.`)
-                    .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo)
-                    .setTimestamp()
-                const page5 = new EmbedBuilder()
-                    .setTitle('TIMEOUT')
-                    .setDescription(`Verification timed out. To try again, run /verify.`)
-                    .setColor(0x5d65f3)
-                    .setThumbnail(config.GroupLogo)
-                    .setTimestamp()
-                const page6 = new EmbedBuilder()
-                    .setTitle('UNAUTHORIZED')
-                    .setDescription(`I am not able to update your roles/nickname!`)
-                    .setColor(config.ErrorColor)
-                    .setThumbnail(Avatar.data.data[0].imageUrl)
-                    .setTimestamp()
-
-async function VerifyUser(member) {
-    var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
-    var LastProfile
-    for (var pfl in Profiles.data) {
-
-        if (Profiles.data[pfl].DiscordId == member){
-            //console.log(Profiles.data[pfl])
-            LastProfile = Profiles.data[pfl]
-        }
-    }
-
-    if (LastProfile !== null && LastProfile.RobloxId !== 0) {
-        console.log(LastProfile, LastProfile.RobloxId)
-        var GroupResponse = await axios.get(`https://groups.roblox.com/v2/users/${LastProfile.RobloxId}/groups/roles`)
-
-        if (GroupResponse.data.data.find(x => x.group.id === 14765837)){
-            try {
-                await interaction.member.roles.add(OrionRole)
-                await interaction.member.roles.remove(GuestRole)
-
-                if (response.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
-                    await interaction.member.roles.add(OfficerRole)
-                } else {
-                    await interaction.member.roles.remove(OfficerRole)
-                }
-            } catch {
-                return interaction.editReply({ embeds: [page6], components: [] });
-            }
-        } else {
-            await interaction.member.roles.remove(OrionRole)
-            await interaction.member.roles.remove(OfficerRole)
-            await interaction.member.roles.add(GuestRole)
-        }
-
-        try {
-            await interaction.member.setNickname(`${displayName}`)
-        } catch(err) {
-            return interaction.editReply({ embeds: [page6], components: [] });
-        };
-
-        return interaction.editReply({ embeds: [page3], components: [] });
-    } else {
-        return interaction.editReply({ embeds: [page2], components: [row] });
-    };
-}
-
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('verify')
@@ -144,6 +61,42 @@ module.exports = {
                     return interaction.reply({ content: `Could not find the username ${username}. Please check your spelling and try again.` });
                 }
                 var displayName = data.data.name
+                const page1 = new EmbedBuilder()
+                      .setTitle('VERIFICATION')
+                      .setDescription(`To verify account ownership, complete the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE).`)
+                      .setColor(0x5d65f3)
+                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setTimestamp()
+                  const page2 = new EmbedBuilder()
+                      .setTitle('VERIFICATION')
+                      .setDescription(`Sorry, but it looks like you haven't completed the [initiation course](https://www.roblox.com/games/10349904294/INITIATION-COURSE). Please complete the steps then click "DONE".`)
+                      .setColor(config.ErrorColor)
+                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setTimestamp()
+                  const page3 = new EmbedBuilder()
+                      .setTitle('VERIFICATION')
+                      .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
+                      .setColor(0x5d65f3)
+                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setTimestamp()
+                  const page4 = new EmbedBuilder()
+                      .setTitle('VERIFICATION')
+                      .setDescription(`Account verification cancelled. To try again, run /verify.`)
+                      .setColor(0x5d65f3)
+                      .setThumbnail(config.GroupLogo)
+                      .setTimestamp()
+                  const page5 = new EmbedBuilder()
+                      .setTitle('TIMEOUT')
+                      .setDescription(`Verification timed out. To try again, run /verify.`)
+                      .setColor(0x5d65f3)
+                      .setThumbnail(config.GroupLogo)
+                      .setTimestamp()
+                  const page6 = new EmbedBuilder()
+                      .setTitle('UNAUTHORIZED')
+                      .setDescription(`I am not able to update your roles/nickname!`)
+                      .setColor(config.ErrorColor)
+                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setTimestamp()
                 const row = new ActionRowBuilder()
                 .addComponents(
                     new ButtonBuilder()
@@ -166,7 +119,49 @@ module.exports = {
                         console.log(i.customId)
                         i.deferUpdate();
                         if (i.customId === 'done') {
-                            VerifyUser(member)
+                          var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
+                          var LastProfile
+                          for (var pfl in Profiles.data) {
+                      
+                              if (Profiles.data[pfl].DiscordId == member){
+                                  //console.log(Profiles.data[pfl])
+                                  LastProfile = Profiles.data[pfl]
+                              }
+                          }
+                      
+                          if (LastProfile !== null && LastProfile.RobloxId !== 0) {
+                              console.log(LastProfile, LastProfile.RobloxId)
+                              var GroupResponse = await axios.get(`https://groups.roblox.com/v2/users/${LastProfile.RobloxId}/groups/roles`)
+                      
+                              if (GroupResponse.data.data.find(x => x.group.id === 14765837)){
+                                  try {
+                                      await interaction.member.roles.add(OrionRole)
+                                      await interaction.member.roles.remove(GuestRole)
+                      
+                                      if (response.data.data.find(x => x.group.id === 14765837).role.rank >= 249) {
+                                          await interaction.member.roles.add(OfficerRole)
+                                      } else {
+                                          await interaction.member.roles.remove(OfficerRole)
+                                      }
+                                  } catch {
+                                      return interaction.editReply({ embeds: [page6], components: [] });
+                                  }
+                              } else {
+                                  await interaction.member.roles.remove(OrionRole)
+                                  await interaction.member.roles.remove(OfficerRole)
+                                  await interaction.member.roles.add(GuestRole)
+                              }
+                      
+                              try {
+                                  await interaction.member.setNickname(`${displayName}`)
+                              } catch(err) {
+                                  return interaction.editReply({ embeds: [page6], components: [] });
+                              };
+                      
+                              return interaction.editReply({ embeds: [page3], components: [] });
+                          } else {
+                              return interaction.editReply({ embeds: [page2], components: [row] });
+                          };
                         } else if (i.customId === 'cancel') {
                             var LastPending = axios.get(`${config.firebaseURL}Pending/${UserId}.json`)
 
