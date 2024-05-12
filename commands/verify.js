@@ -114,7 +114,7 @@ module.exports = {
                         i.deferUpdate();
                         if (i.customId === 'done') {
                           var Profiles = await axios.get(`${config.firebaseURL}Profiles.json`)
-                          var LastProfile
+                          var LastProfile = null
                           for (var pfl in Profiles.data) {
                       
                               if (Profiles.data[pfl].DiscordId == member){
