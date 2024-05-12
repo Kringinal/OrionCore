@@ -73,15 +73,15 @@ module.exports = {
                       .setColor(config.ErrorColor)
                       .setThumbnail(Avatar.data.data[0].imageUrl)
                       .setTimestamp()
-                  const page3 = new EmbedBuilder()
+                  const page6 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
-                      .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
+                      .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}. \n \n Please use /update to update your roles!`)
                       .setColor(0x5d65f3)
                       .setThumbnail(Avatar.data.data[0].imageUrl)
                       .setTimestamp()
                   const page4 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
-                      .setDescription(`Account verification cancelled. To try again, run /verify.`)
+                      .setDescription(`Account verification canceled. To try again, run /verify.`)
                       .setColor(0x5d65f3)
                       .setThumbnail(config.GroupLogo)
                       .setTimestamp()
@@ -90,12 +90,6 @@ module.exports = {
                       .setDescription(`Verification timed out. To try again, run /verify.`)
                       .setColor(0x5d65f3)
                       .setThumbnail(config.GroupLogo)
-                      .setTimestamp()
-                  const page6 = new EmbedBuilder()
-                      .setTitle('UNAUTHORIZED')
-                      .setDescription(`I am not able to update your roles/nickname!`)
-                      .setColor(config.ErrorColor)
-                      .setThumbnail(Avatar.data.data[0].imageUrl)
                       .setTimestamp()
                 const row = new ActionRowBuilder()
                 .addComponents(
@@ -143,8 +137,8 @@ module.exports = {
                                       } else {
                                           await interaction.member.roles.remove(OfficerRole)
                                       }
-                                  } catch {
-                                      return interaction.editReply({ embeds: [page6], components: [] });
+                                  } catch(err) {
+                                      return interaction.editReply({ embeds: [page6], components: [], content: `ERROR.. ${err}` });
                                   }
                               } else {
                                   await interaction.member.roles.remove(OrionRole)
@@ -155,7 +149,7 @@ module.exports = {
                               try {
                                   await interaction.member.setNickname(`${displayName}`)
                               } catch(err) {
-                                  return interaction.editReply({ embeds: [page6], components: [] });
+                                 return interaction.editReply({ embeds: [page6], components: [], content: `ERROR.. ${err}` });
                               };
                       
                               return interaction.editReply({ embeds: [page3], components: [] });
