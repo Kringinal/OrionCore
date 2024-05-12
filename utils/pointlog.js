@@ -28,7 +28,7 @@ module.exports = {
 
     const embed = new EmbedBuilder()
     .setTitle(`**ACCEPTANCE**`)
-    .setDescription(`[${data.name}](https://www.roblox.com/users/${TargetUserId}/profile) has been accepted into **Orion Core**! \n \n **ACCEPTANCE OBBY COMPLETED**`)
+    .setDescription(`[${data.name}](https://www.roblox.com/users/${TargetUserId}/profile) has been accepted into **Orion Core**! \n \n **VERIFICATION OBBY COMPLETED**`)
     .setTimestamp()
     .setColor(`#8CFF00`)       
     .setThumbnail(Avatar.data.data[0].imageUrl)
