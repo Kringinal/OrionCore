@@ -49,8 +49,6 @@ module.exports = {
             }
 
             var PendingResponse = await axios.get(`${config.firebaseURL}Pending/${UserId}.json`)
-            
-            var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${UserId}&size=420x420&format=Png&isCircular=true`)
 
             if (PendingResponse.data && UserId !== 0) {
                 return interaction.reply({ content: 'You can not have more than one verification prompt active at a time!' });
@@ -60,24 +58,25 @@ module.exports = {
                 if (!data.data) {
                     return interaction.reply({ content: `Could not find the username ${username}. Please check your spelling and try again.` });
                 }
+                var Avatar = await axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${UserId}&size=420x420&format=Png&isCircular=true`)
                 var displayName = data.data.name
                 const page1 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
                       .setDescription(`To verify account ownership, complete the [verification obby](https://www.roblox.com/games/10349904294/). \n \n Once completed, click DONE.`)
                       .setColor(0x5d65f3)
-                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setThumbnail(Avatar.data.data[0].imageUrl || config.GroupLogo)
                       .setTimestamp()
                   const page2 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
                       .setDescription(`Sorry, but it looks like you haven't completed the [verification obby](https://www.roblox.com/games/10349904294/). Please complete the steps then click "DONE".`)
                       .setColor(config.ErrorColor)
-                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setThumbnail(Avatar.data.data[0].imageUrl || config.GroupLogo)
                       .setTimestamp()
                   const page6 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
                       .setDescription(`Account ownership verified! Welcome to Orion Core, ${displayName}.`)
                       .setColor(0x5d65f3)
-                      .setThumbnail(Avatar.data.data[0].imageUrl)
+                      .setThumbnail(Avatar.data.data[0].imageUrl || config.GroupLogo)
                       .setTimestamp()
                   const page4 = new EmbedBuilder()
                       .setTitle('VERIFICATION')
