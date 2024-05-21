@@ -1,4 +1,4 @@
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const axios  = require('axios').default;
 const { readdirSync } = require('fs');
 const express = require('express');
