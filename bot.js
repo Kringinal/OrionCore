@@ -112,6 +112,7 @@ async function rblx_login() {
             .setThumbnail(config.GroupLogo)
         
             const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            console.log(channel)
             channel.send({ embeds: [embed] })
         })
     }
