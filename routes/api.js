@@ -1,4 +1,4 @@
-const { Attachment, EmbedBuilder } = require('discord.js')
+const { Client, Attachment, EmbedBuilder } = require('discord.js')
 const config = require('../config.json');
 let express = require('express');
 let axios = require('axios').default;
