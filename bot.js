@@ -1,4 +1,4 @@
-const { Client, Collection, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+const { client, Collection, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const axios  = require('axios').default;
 const { readdirSync } = require('fs');
 const express = require('express');
@@ -98,7 +98,7 @@ async function rblx_login() {
             .setColor(`#8CFF00`)       
             .setThumbnail(config.GroupLogo)
             
-            const channel = await discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
             channel.send({ embeds: [embed] })
         })
         .catch(function(error) {
@@ -111,7 +111,7 @@ async function rblx_login() {
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
         
-            const channel = await discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            const channel = await client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
             channel.send({ embeds: [embed] })
         })
     }
