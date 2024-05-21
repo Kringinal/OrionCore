@@ -29,7 +29,7 @@ function registerCommands({ commandss }) {
    }
 
 discordClient.once('ready', () => {
-    const channel = client.channels.cache.get("1242373127783059456");
+    rblx_login()
     discordClient.user.setActivity('ORION CORE', { type: 'WATCHING' });
 
     for (const file of commands) {
@@ -135,6 +135,5 @@ cron.schedule('* * * * *', () => {
 })
 
 discordClient.login(process.env.DISTOKEN)
-rblx_login()
 
 module.exports = app;
