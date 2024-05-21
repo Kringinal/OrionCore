@@ -29,7 +29,8 @@ function registerCommands({ commandss }) {
    }
 
 discordClient.once('ready', () => {
-    //discordClient.user.setActivity('ORION CORE', { type: 'WATCHING' });
+    const channel = client.channels.cache.get("1242373127783059456");
+    discordClient.user.setActivity('ORION CORE', { type: 'WATCHING' });
 
     for (const file of commands) {
         const command = require(`./commands/${file}`);
