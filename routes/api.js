@@ -100,7 +100,7 @@ router.post('/accept', async (req, res, next) =>{
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
         
-            const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            const channel = Client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
             channel.send({ embeds: [embed] })
             res.status(400).json({
                 error: 'Could not accept user!'
@@ -115,7 +115,7 @@ router.post('/accept', async (req, res, next) =>{
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
 
-	     const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+	     const channel = Client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
 	    channel.send({ embeds: [embed] })
         res.status(400).json({
             error: 'User is not pending!'
@@ -201,7 +201,7 @@ router.post('/promote', async (req, res, next) => {
     .setColor(config.ErrorColor)       
     .setThumbnail(config.GroupLogo)
 
-    const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+    const channel = Client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
     channel.send({ embeds: [embed] })
       res.status(201).json({
         message: 'Cannot Promote user.',
