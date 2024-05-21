@@ -111,7 +111,7 @@ async function rblx_login() {
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
         
-            const channel = await client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
             channel.send({ embeds: [embed] })
         })
     }
