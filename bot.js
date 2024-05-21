@@ -91,9 +91,28 @@ async function rblx_login() {
         rblxFunctions.setCookie(Cookie.data.Cookie).then(function() {
             loggedIn = true
             console.log("logged in to Roblox");
+             const embed = new EmbedBuilder()
+            .setTitle(`**LOGGED  IN**`)
+            .setDescription(`Successfully logged in under the account, [Orion_Automation](https://www.roblox.com/users/4791296289/profile)`)
+            .setTimestamp()
+            .setColor(`#8CFF00`)       
+            .setThumbnail(config.GroupLogo)
+        
+            const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            channel.send({ embeds: [embed] })
         })
         .catch(function(error) {
             console.log("There was an error when attempting to log in to roblox. " + error)
+
+            const embed = new EmbedBuilder()
+            .setTitle(`**FAILED TO LOG IN**`)
+            .setDescription(`Failed to log into [Orion_Automation](https://www.roblox.com/users/4791296289/profile).`)
+            .setTimestamp()
+            .setColor(config.ErrorColor)       
+            .setThumbnail(config.GroupLogo)
+        
+            const channel = client.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            channel.send({ embeds: [embed] })
         })
     }
   }
