@@ -107,7 +107,7 @@ async function rblx_login() {
 
             const embed = new EmbedBuilder()
             .setTitle(`**FAILED TO LOG IN**`)
-            .setDescription(`Failed to log into [Orion_Automation](https://www.roblox.com/users/4791296289/profile).`)
+            .setDescription(`Failed to log into [Orion_Automation](https://www.roblox.com/users/4791296289/profile). \n \n ${error}`)
             .setTimestamp()
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
