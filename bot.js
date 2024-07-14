@@ -100,7 +100,7 @@ async function rblx_login() {
             .setThumbnail(config.GroupLogo)
             
             const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
-            channel.send({ embeds: [embed] })
+            return channel.send({ embeds: [embed] })
         })
         .catch(function(error) {
             console.log("There was an error when attempting to log in to roblox. " + error)
@@ -114,7 +114,7 @@ async function rblx_login() {
         
             const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
             console.log(channel)
-            channel.send({ embeds: [embed] })
+            return channel.send({ embeds: [embed] })
         })
     }
   }
