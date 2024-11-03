@@ -30,7 +30,7 @@ function registerCommands({ commandss }) {
 
 discordClient.once('ready', () => {
     rblx_login()
-    discordClient.user.setActivity('ORION CORE', { type: 'WATCHING' });
+    discordClient.user.setActivity('ARVORIAN CONFEDERATION', { type: 'WATCHING' });
 
     for (const file of commands) {
         const command = require(`./commands/${file}`);
