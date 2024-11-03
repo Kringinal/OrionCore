@@ -94,7 +94,7 @@ async function rblx_login() {
             console.log("logged in to Roblox");
              const embed = new EmbedBuilder()
             .setTitle(`**LOGGED  IN**`)
-            .setDescription(`Successfully logged in under the account, [Orion_Automation](https://www.roblox.com/users/4791296289/profile)`)
+            .setDescription(`Successfully logged in under the account, [ArvorianSystem](https://www.roblox.com/users/7538980279/profile)`)
             .setTimestamp()
             .setColor(`#8CFF00`)       
             .setThumbnail(config.GroupLogo)
@@ -107,7 +107,7 @@ async function rblx_login() {
 
             const embed = new EmbedBuilder()
             .setTitle(`**FAILED TO LOG IN**`)
-            .setDescription(`Failed to log into [Orion_Automation](https://www.roblox.com/users/4791296289/profile). \n \n ${error}`)
+            .setDescription(`Failed to log into [ArvorianSystem](https://www.roblox.com/users/7538980279/profile). \n \n ${error}`)
             .setTimestamp()
             .setColor(config.ErrorColor)       
             .setThumbnail(config.GroupLogo)
