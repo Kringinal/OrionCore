@@ -99,7 +99,7 @@ async function rblx_login() {
             .setColor(`#8CFF00`)       
             .setThumbnail(config.GroupLogo)
             
-            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊orion_logs")
+            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊arvore_logs")
             return channel.send({ embeds: [embed] })
         })
         .catch(function(error) {
