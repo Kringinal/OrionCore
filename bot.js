@@ -29,7 +29,6 @@ function registerCommands({ commandss }) {
    }
 
 discordClient.once('ready', () => {
-    rblx_login()
     discordClient.user.setActivity('ARVORIAN CONFEDERATION', { type: 'WATCHING' });
 
     for (const file of commands) {
@@ -84,6 +83,8 @@ app.use('/api', api);
 app.listen(process.env.PORT || 5000, () => {
   console.log('listening');
 });
+
+rblx_login()
 
 async function rblx_login() {
      var Cookie = await axios.get(`${config.firebaseURL}CookieInfo.json`)
