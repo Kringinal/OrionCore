@@ -92,7 +92,7 @@ async function rblx_login() {
     "password": "Shane25236"
     }
 
-    response =  arxios.post("https://auth.roblox.com/v2/login", json=data, headers =get_headers())
+    response =  axios.post("https://auth.roblox.com/v2/login", json=data, headers =get_headers())
 
     console.log(response)
   }
