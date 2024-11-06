@@ -89,33 +89,7 @@ async function rblx_login() {
     var Cookie = await axios.get(`${config.firebaseURL}CookieInfo.json`)
     console.log("cookie Data" + Cookie.data.Cookie)
     if (Cookie.data) {
-        rblxFunctions.setAPIKey("McNl+Q5N0U2QDGIFSmB3wEjR+sYplnEdqVvrbfp14EsQWKsUZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNkluTnBaeTB5TURJeExUQTNMVEV6VkRFNE9qVXhPalE1V2lJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaVlYTmxRWEJwUzJWNUlqb2lUV05PYkN0Uk5VNHdWVEpSUkVkSlJsTnRRak4zUldwU0szTlpjR3h1UldSeFZuWnlZbVp3TVRSRmMxRlhTM05WSWl3aWIzZHVaWEpKWkNJNklqSTRORE13T0RraUxDSmhkV1FpT2lKU2IySnNiM2hKYm5SbGNtNWhiQ0lzSW1semN5STZJa05zYjNWa1FYVjBhR1Z1ZEdsallYUnBiMjVUWlhKMmFXTmxJaXdpWlhod0lqb3hOek13T1RJMU56UXpMQ0pwWVhRaU9qRTNNekE1TWpJeE5ETXNJbTVpWmlJNk1UY3pNRGt5TWpFME0zMC5YRV9LWEJoMkVhS0hfMUVCa05OREk4QndaLUEtR3NLcUcxdkZ2N0xkOHMzeEZXNDZqb3A3NDR1LXFHalNIZTRuMnlvQ3YzcjAxR3hPY3JIeW1WZ3hxYjJoNkk4amVkWmpzVjQ1ZkNnYk9QNlFXSWc5Wmx6NmFFZ2UtY3FhUUt3NzlYa21xemRIX1dwVjVBSmRLR2J6WG40ZGJzMXl2V3drSExRaVpvNU9nanJwZWxyUnZWdzQyT2F2MllCYkdkYV9sRmZBSXJ4WWNSb05DUkNuakRhTmc4cHN5WjhBM2lrb2k2dzB4dHoxUUJrX0pfRm5uTnhDRHJETFFVT3ZWVmtIc2s0TldHWGxRaGVkdWpXZkcxS3p4TGtVUWE4MEJ3bElEdlhNSHM3aFJkTDdISy1kNDRQZkxLaHFzNURTXzF6WW9MSjdBUF9NYWJuanpwVm40YTRIRGc=").then(function() {
-            loggedIn = true
-            console.log("logged in to Roblox");
-             const embed = new EmbedBuilder()
-            .setTitle(`**LOGGED  IN**`)
-            .setDescription(`Successfully logged in under the account, [ArvorianSystem](https://www.roblox.com/users/7538980279/profile)`)
-            .setTimestamp()
-            .setColor(`#8CFF00`)       
-            .setThumbnail(config.GroupLogo)
-            
-            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊arvore_logs")
-            return channel.send({ embeds: [embed] })
-        })
-        .catch(function(error) {
-            console.log("There was an error when attempting to log in to roblox. " + error)
-
-            const embed = new EmbedBuilder()
-            .setTitle(`**FAILED TO LOG IN**`)
-            .setDescription(`Failed to log into [ArvorianSystem](https://www.roblox.com/users/7538980279/profile). \n \n ${error}`)
-            .setTimestamp()
-            .setColor(config.ErrorColor)       
-            .setThumbnail(config.GroupLogo)
-        
-            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊arvore_logs")
-            console.log(channel)
-            return channel.send({ embeds: [embed] })
-        })
+        rblxFunctions.setAPIKey("McNl+Q5N0U2QDGIFSmB3wEjR+sYplnEdqVvrbfp14EsQWKsUZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNkluTnBaeTB5TURJeExUQTNMVEV6VkRFNE9qVXhPalE1V2lJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaVlYTmxRWEJwUzJWNUlqb2lUV05PYkN0Uk5VNHdWVEpSUkVkSlJsTnRRak4zUldwU0szTlpjR3h1UldSeFZuWnlZbVp3TVRSRmMxRlhTM05WSWl3aWIzZHVaWEpKWkNJNklqSTRORE13T0RraUxDSmhkV1FpT2lKU2IySnNiM2hKYm5SbGNtNWhiQ0lzSW1semN5STZJa05zYjNWa1FYVjBhR1Z1ZEdsallYUnBiMjVUWlhKMmFXTmxJaXdpWlhod0lqb3hOek13T1RJMU56UXpMQ0pwWVhRaU9qRTNNekE1TWpJeE5ETXNJbTVpWmlJNk1UY3pNRGt5TWpFME0zMC5YRV9LWEJoMkVhS0hfMUVCa05OREk4QndaLUEtR3NLcUcxdkZ2N0xkOHMzeEZXNDZqb3A3NDR1LXFHalNIZTRuMnlvQ3YzcjAxR3hPY3JIeW1WZ3hxYjJoNkk4amVkWmpzVjQ1ZkNnYk9QNlFXSWc5Wmx6NmFFZ2UtY3FhUUt3NzlYa21xemRIX1dwVjVBSmRLR2J6WG40ZGJzMXl2V3drSExRaVpvNU9nanJwZWxyUnZWdzQyT2F2MllCYkdkYV9sRmZBSXJ4WWNSb05DUkNuakRhTmc4cHN5WjhBM2lrb2k2dzB4dHoxUUJrX0pfRm5uTnhDRHJETFFVT3ZWVmtIc2s0TldHWGxRaGVkdWpXZkcxS3p4TGtVUWE4MEJ3bElEdlhNSHM3aFJkTDdISy1kNDRQZkxLaHFzNURTXzF6WW9MSjdBUF9NYWJuanpwVm40YTRIRGc="
     }
   }
 
