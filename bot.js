@@ -86,37 +86,15 @@ app.listen(process.env.PORT || 5000, () => {
 });
 
 async function rblx_login() {
-     var Cookie = await axios.get(`${config.firebaseURL}CookieInfo.json`)
-    console.log("cookie Data" + Cookie.data.Cookie)
-    if (Cookie.data) {
-        rblxFunctions.setCookie(Cookie.data.Cookie).then(function() {
-            loggedIn = true
-            console.log("logged in to Roblox");
-             const embed = new EmbedBuilder()
-            .setTitle(`**LOGGED  IN**`)
-            .setDescription(`Successfully logged in under the account, [ArvorianSystem](https://www.roblox.com/users/7538980279/profile)`)
-            .setTimestamp()
-            .setColor(`#8CFF00`)       
-            .setThumbnail(config.GroupLogo)
-            
-            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊arvore_logs")
-            return channel.send({ embeds: [embed] })
-        })
-        .catch(function(error) {
-            console.log("There was an error when attempting to log in to roblox. " + error)
-
-            const embed = new EmbedBuilder()
-            .setTitle(`**FAILED TO LOG IN**`)
-            .setDescription(`Failed to log into [ArvorianSystem](https://www.roblox.com/users/7538980279/profile). \n \n ${error}`)
-            .setTimestamp()
-            .setColor(config.ErrorColor)       
-            .setThumbnail(config.GroupLogo)
-        
-            const channel = discordClient.channels.cache.find(ch => ch.name == "📝┊arvore_logs")
-            console.log(channel)
-            return channel.send({ embeds: [embed] })
-        })
+    data = {
+    "ctype": "Username",
+    "cvalue": "ArvorianSystem",
+    "password": "Shane25236"
     }
+
+    response =  arxios.post("https://auth.roblox.com/v2/login", json=data, headers =get_headers())
+
+    console.log(response)
   }
 
 cron.schedule('*/30 * * * *', () => {
