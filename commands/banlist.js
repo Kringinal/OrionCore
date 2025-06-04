@@ -77,7 +77,7 @@ module.exports = {
         } else if (addremovechoice == 'add' && type == 'user') {
              var Profile = await axios.get(`${config.firebaseURL}User_Banlist/${id}_User`)
 
-            if (Profile == null){
+            if (Profile === null){
                 await firebase.database().ref(`User_Banlist/${id}_User`).set({Reason: reason})
 
                 const EEmbed = new EmbedBuilder()
