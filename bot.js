@@ -27,7 +27,6 @@ function registerCommands({ commandss }) {
    }
 
 discordClient.once('ready', () => {
-    rblx_login()
     discordClient.user.setActivity('ARVORIAN CONFEDERATION', { type: 'WATCHING' });
 
     for (const file of commands) {
