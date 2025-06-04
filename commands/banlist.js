@@ -49,7 +49,7 @@ module.exports = {
         const { options } = interaction
 
         const addremovechoice = options.getString('addorremove');
-        var amount = options.getString('type')
+        const type = options.getString('type')
         const id = options.getString('id')
         const reason = options.getString('reason')
 
